@@ -309,15 +309,14 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 </span>
 
                 <div className="space-y-1.5">
-                  <div className="relative">
+                  <div>
                     <input
                       type="text"
                       placeholder="Votre idée..."
                       value={firstNameGuess}
                       onChange={(e) => setFirstNameGuess(e.target.value)}
-                      className="w-full bg-white/90 border border-[#A8CDC0] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs pr-8"
+                      className="w-full bg-white/90 border border-[#A8CDC0] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
                     />
-                    <span className="absolute right-2.5 top-2.5 text-stone-400 text-xs">✏️</span>
                   </div>
                   <p className="text-[11px] text-teal-800/80 italic font-medium leading-tight">
                     Secret gardé jusqu'à la naissance !

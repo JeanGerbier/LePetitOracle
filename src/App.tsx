@@ -7,7 +7,7 @@ import { ParentsAuthModal } from './components/ParentsAuthModal';
 import { SuccessModal } from './components/SuccessModal';
 import { BirthResultsView } from './components/BirthResultsView';
 import { Prediction, ActualBirthData } from './types/prediction';
-import { Sparkles, Eye } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import {
   fetchPredictions,
   savePrediction,
@@ -145,10 +145,9 @@ export default function App() {
                   </div>
                   <button
                     onClick={() => setIsSimulationMode(true)}
-                    className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-4 py-1.5 rounded-full border border-amber-300/90 shadow-2xs flex items-center gap-1.5 cursor-pointer transition font-bold"
+                    className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-4 py-1.5 rounded-full border border-amber-300/90 shadow-2xs cursor-pointer transition font-bold"
                   >
-                    <Eye className="w-4 h-4 text-amber-800" />
-                    <span>Simuler le rendu du Jour J 👶</span>
+                    <span>Simuler le rendu du Jour J</span>
                   </button>
                 </div>
               )}
