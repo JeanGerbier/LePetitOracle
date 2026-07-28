@@ -47,7 +47,7 @@ const INITIAL_DEMO_PREDICTIONS: Prediction[] = [
     gender: 'fille',
     birth_date: '2026-08-15T11:00:00.000Z',
     first_name_guess: 'Sofia',
-    who_cries_first: 'bebe',
+    who_cries_first: 'maman',
     weight_grams: 3200,
     height_cm: 49,
   },

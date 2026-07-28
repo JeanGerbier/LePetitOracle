@@ -11,7 +11,7 @@ interface PredictionFormProps {
 
 export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
   const [userName, setUserName] = useState('Camille L.');
-  const [birthDate, setBirthDate] = useState('2026-08-15');
+  const [birthDate, setBirthDate] = useState('2026-09-21');
   const [birthHours, setBirthHours] = useState('01');
   const [birthMinutes, setBirthMinutes] = useState('00');
   const [gender, setGender] = useState<Gender>('fille');
@@ -118,11 +118,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
         {/* LEFT & CENTER MAIN CONTENT (8 cols) */}
         <div className="lg:col-span-8 space-y-6">
 
-          {/* --- ROW 1: Date/Heure | Sexe | Prénom --- */}
+          {/* --- ROW 1: Date/Heure (gauche) | Sexe & Prénom superposés (droite) --- */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
 
             {/* Card 1: La Date et l'Heure */}
-            <div className="md:col-span-5 bg-[#C9DCE5]/60 border border-[#B0CAD6] p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
+            <div className="md:col-span-6 bg-[#C9DCE5]/60 border border-[#B0CAD6] p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-2xl bg-white/90 border border-[#9BBED0] flex items-center justify-center text-[#3D6B82] shadow-xs">
                   <Calendar className="w-5 h-5" />
@@ -142,6 +142,9 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     className="w-full bg-white/90 border border-[#A7C8D8] rounded-xl px-3 py-2 text-sm text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
                     required
                   />
+                  <p className="text-[11px] text-[#2D586C] font-semibold italic mt-1.5 flex items-center gap-1.5 bg-white/60 px-2.5 py-1 rounded-lg border border-[#A7C8D8]/50">
+                    <span>🎂</span> Sortie du four prévue le 21 septembre
+                  </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2">
@@ -184,62 +187,67 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               </div>
             </div>
 
-            {/* Card 2: Le Sexe */}
-            <div className="md:col-span-4 bg-[#F2EDE2]/80 border border-[#E3DAC8] p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
-              <span className="font-bold text-slate-800 text-base mb-3 block">
-                Le Sexe
-              </span>
+            {/* Colonne droite : Le Sexe & Le Prénom superposés */}
+            <div className="md:col-span-6 flex flex-col justify-between gap-4">
+              
+              {/* Card 2: Le Sexe */}
+              <div className="bg-[#F2EDE2]/80 border border-[#E3DAC8] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition flex-1">
+                <span className="font-bold text-slate-800 text-sm sm:text-base mb-2 block">
+                  Le Sexe
+                </span>
 
-              <div className="grid grid-cols-2 gap-3">
-                <button
-                  type="button"
-                  onClick={() => setGender('fille')}
-                  className={`p-3 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                    gender === 'fille'
-                      ? 'bg-[#F2E5CE] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
-                      : 'bg-white/80 border-stone-200 hover:bg-white text-slate-600'
-                  }`}
-                >
-                  <span className="text-2xl">👗</span>
-                  <span className="text-xs font-bold">Fille</span>
-                </button>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setGender('fille')}
+                    className={`p-2.5 rounded-2xl border transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                      gender === 'fille'
+                        ? 'bg-[#F2E5CE] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
+                        : 'bg-white/80 border-stone-200 hover:bg-white text-slate-600'
+                    }`}
+                  >
+                    <span className="text-xl">🍳</span>
+                    <span className="text-xs font-bold">Fille</span>
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={() => setGender('garcon')}
-                  className={`p-3 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                    gender === 'garcon'
-                      ? 'bg-[#F2E5CE] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
-                      : 'bg-white/80 border-stone-200 hover:bg-white text-slate-600'
-                  }`}
-                >
-                  <span className="text-2xl">🎀</span>
-                  <span className="text-xs font-bold">Garçon</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Card 3: Le Prénom */}
-            <div className="md:col-span-3 bg-[#E3EFE9]/70 border border-[#C5DED2] p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
-              <span className="font-bold text-slate-800 text-base mb-3 block">
-                Le Prénom
-              </span>
-
-              <div className="space-y-2">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Votre idée..."
-                    value={firstNameGuess}
-                    onChange={(e) => setFirstNameGuess(e.target.value)}
-                    className="w-full bg-white/90 border border-[#A8CDC0] rounded-xl px-3 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs pr-8"
-                  />
-                  <span className="absolute right-2.5 top-3 text-stone-400 text-xs">✏️</span>
+                  <button
+                    type="button"
+                    onClick={() => setGender('garcon')}
+                    className={`p-2.5 rounded-2xl border transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+                      gender === 'garcon'
+                        ? 'bg-[#F2E5CE] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
+                        : 'bg-white/80 border-stone-200 hover:bg-white text-slate-600'
+                    }`}
+                  >
+                    <span className="text-xl">⛵</span>
+                    <span className="text-xs font-bold">Garçon</span>
+                  </button>
                 </div>
-                <p className="text-[11px] text-teal-800/80 italic font-medium leading-tight">
-                  Secret gardé jusqu'à la naissance !
-                </p>
               </div>
+
+              {/* Card 3: Le Prénom */}
+              <div className="bg-[#E3EFE9]/70 border border-[#C5DED2] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition flex-1">
+                <span className="font-bold text-slate-800 text-sm sm:text-base mb-2 block">
+                  Le Prénom
+                </span>
+
+                <div className="space-y-1.5">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Votre idée..."
+                      value={firstNameGuess}
+                      onChange={(e) => setFirstNameGuess(e.target.value)}
+                      className="w-full bg-white/90 border border-[#A8CDC0] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs pr-8"
+                    />
+                    <span className="absolute right-2.5 top-2.5 text-stone-400 text-xs">✏️</span>
+                  </div>
+                  <p className="text-[11px] text-teal-800/80 italic font-medium leading-tight">
+                    Secret gardé jusqu'à la naissance !
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
@@ -262,13 +270,12 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 </span>
               </div>
 
-              {/* 4 Interactive Option Cards */}
-              <div className="sm:col-span-9 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {/* 3 Interactive Option Cards */}
+              <div className="sm:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {[
-                  { id: 'bebe', label: 'Le Bébé', icon: '🍼' },
                   { id: 'maman', label: 'La Maman', icon: '🤱' },
                   { id: 'papa', label: 'Le Papa', icon: '🧔' },
-                  { id: 'les_deux', label: 'Les deux parents', icon: '😭' }
+                  { id: 'les_deux', label: 'Les parents en même temps', icon: '😭' }
                 ].map((option) => (
                   <button
                     key={option.id}

@@ -13,14 +13,12 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
 }) => {
   const formatWhoCries = (val: string) => {
     switch (val) {
-      case 'bebe':
-        return '👶 Le bébé';
       case 'maman':
         return '🤱 La maman';
       case 'papa':
         return '🧔 Le papa';
       case 'les_deux':
-        return '😭 Les deux parents';
+        return '😭 Les parents en même temps';
       default:
         return val;
     }
@@ -106,7 +104,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
                     ? 'bg-rose-50 text-rose-800 border-rose-200'
                     : 'bg-teal-50 text-teal-800 border-teal-200'
                 }`}>
-                  {item.gender === 'fille' ? '👗 Fille' : '🎀 Garçon'}
+                  {item.gender === 'fille' ? '🍳 Fille' : '⛵ Garçon'}
                 </span>
               </div>
 

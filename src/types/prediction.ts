@@ -1,6 +1,6 @@
 export type Gender = 'fille' | 'garcon';
 
-export type WhoCriesFirst = 'bebe' | 'maman' | 'papa' | 'les_deux';
+export type WhoCriesFirst = 'maman' | 'papa' | 'les_deux';
 
 export interface Prediction {
   id: string;
