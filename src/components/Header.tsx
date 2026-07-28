@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Moon, Sparkles, Send, Trophy, Crown, Share2, Check, Lock } from 'lucide-react';
+import { Send, Trophy, Crown, Share2, Check, Lock } from 'lucide-react';
 
 interface HeaderProps {
   activeTab: 'form' | 'leaderboard' | 'parents';
@@ -31,28 +31,19 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-[#F7F9F6]/90 backdrop-blur-md border-b border-stone-200/60 px-4 md:px-12 py-3 transition-all">
+    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-xs px-4 md:px-12 py-3 transition-all">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Logo & Brand Title */}
+        {/* Logo Image */}
         <div 
           onClick={() => onTabChange('form')}
-          className="flex items-center gap-3 cursor-pointer group"
+          className="cursor-pointer group py-1"
         >
-          <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-amber-100 to-amber-200 border border-amber-300/80 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
-            <div className="relative">
-              <Moon className="w-6 h-6 text-amber-700 fill-amber-300" />
-              <Sparkles className="w-3.5 h-3.5 text-amber-600 absolute -top-1 -right-1 animate-pulse" />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-2xl font-serif font-bold tracking-tight text-slate-800">
-              Le Petit Oracle
-            </span>
-            <span className="text-[10px] text-teal-800 font-bold tracking-wider uppercase">
-              Pronostics Familiaux de Naissance
-            </span>
-          </div>
+          <img 
+            src="/assets/logo.png" 
+            alt="Le Petit Oracle" 
+            className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+          />
         </div>
 
         {/* Desktop Navigation Links */}

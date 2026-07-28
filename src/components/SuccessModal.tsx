@@ -27,7 +27,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ userName, onClose })
           🚀
         </div>
         <div className="space-y-2">
-          <h3 className="text-2xl font-serif font-bold text-slate-800">
+          <h3 className="text-xl font-bold text-slate-800">
             Pronostic Enregistré !
           </h3>
           <p className="text-sm text-slate-600 leading-relaxed">

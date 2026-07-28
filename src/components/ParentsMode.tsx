@@ -53,23 +53,54 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
 
 
 
-  // Helper date inputs
-  const rawDateOnly = actualData.birth_date.substring(0, 10);
-  const rawTimeOnly = actualData.birth_date.substring(11, 16) || '02:15';
+  // Helper date/time inputs sans décalage de fuseau horaire (UTC vs Locale)
+  const getLocalYYYYMMDD = (isoStr: string) => {
+    try {
+      const d = new Date(isoStr);
+      if (isNaN(d.getTime())) return isoStr.substring(0, 10);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    } catch {
+      return isoStr.substring(0, 10);
+    }
+  };
+
+  const getLocalHHMM = (isoStr: string) => {
+    try {
+      const d = new Date(isoStr);
+      if (isNaN(d.getTime())) return isoStr.substring(11, 16);
+      const hours = String(d.getHours()).padStart(2, '0');
+      const minutes = String(d.getMinutes()).padStart(2, '0');
+      return `${hours}:${minutes}`;
+    } catch {
+      return isoStr.substring(11, 16);
+    }
+  };
+
+  const rawDateOnly = getLocalYYYYMMDD(actualData.birth_date);
+  const rawTimeOnly = getLocalHHMM(actualData.birth_date);
 
   const handleDateChange = (newDateStr: string) => {
-    const timePart = rawTimeOnly;
+    if (!newDateStr) return;
+    const [year, month, day] = newDateStr.split('-').map(Number);
+    const [hours, minutes] = rawTimeOnly.split(':').map(Number);
+    const d = new Date(year, month - 1, day, hours || 0, minutes || 0);
     setActualData(prev => ({
       ...prev,
-      birth_date: new Date(`${newDateStr}T${timePart}:00`).toISOString()
+      birth_date: d.toISOString()
     }));
   };
 
   const handleTimeChange = (newTimeStr: string) => {
-    const datePart = rawDateOnly;
+    if (!newTimeStr) return;
+    const [year, month, day] = rawDateOnly.split('-').map(Number);
+    const [hours, minutes] = newTimeStr.split(':').map(Number);
+    const d = new Date(year, month - 1, day, hours || 0, minutes || 0);
     setActualData(prev => ({
       ...prev,
-      birth_date: new Date(`${datePart}T${newTimeStr}:00`).toISOString()
+      birth_date: d.toISOString()
     }));
   };
 

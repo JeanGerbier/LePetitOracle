@@ -38,7 +38,7 @@ export const ParentsAuthModal: React.FC<ParentsAuthModalProps> = ({
           <div className="w-14 h-14 rounded-full bg-amber-100 border border-amber-300 text-amber-800 mx-auto flex items-center justify-center text-2xl shadow-inner">
             <Crown className="w-7 h-7 text-amber-600" />
           </div>
-          <h3 className="text-2xl font-serif font-bold text-slate-800">
+          <h3 className="text-xl font-bold text-slate-800">
             Accès Mode Parents
           </h3>
           <p className="text-xs text-slate-500">

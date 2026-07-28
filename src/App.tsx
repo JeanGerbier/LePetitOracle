@@ -90,7 +90,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F9F6] text-slate-800 font-sans antialiased selection:bg-teal-200 flex flex-col justify-between">
+    <div className="min-h-screen bg-[#EAF1F4] text-slate-800 font-sans antialiased selection:bg-teal-200 flex flex-col justify-between">
       
       <div>
         {/* Sticky App Header */}
@@ -100,21 +100,6 @@ export default function App() {
           predictionCount={predictionsList.length}
           isParentsAuthenticated={isParentsAuthenticated}
         />
-
-        {/* Simulation Banner Switcher */}
-        {!isSimulationMode && (
-          <div className="bg-amber-100/70 border-b border-amber-200 text-center py-2 px-4 text-xs font-bold text-amber-900 flex items-center justify-center gap-2">
-            <Sparkles className="w-4 h-4 text-amber-700" />
-            <span>Curieux du résultat final ?</span>
-            <button
-              onClick={() => setIsSimulationMode(true)}
-              className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-3 py-1 rounded-full border border-amber-300/80 shadow-2xs flex items-center gap-1 cursor-pointer transition ml-1"
-            >
-              <Eye className="w-3.5 h-3.5" />
-              <span>Simuler le rendu du Jour J 👶</span>
-            </button>
-          </div>
-        )}
 
         {/* Main Content Area */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 pb-16">
@@ -149,6 +134,23 @@ export default function App() {
                   onSaveActualData={handleSaveActualBirthData}
                   onLogout={handleParentsLogout}
                 />
+              )}
+
+              {/* Simulation Banner Switcher (en bas de page sur l'onglet Pronostics et Mode Parents) */}
+              {(activeTab === 'form' || activeTab === 'parents') && (
+                <div className="mt-12 bg-amber-100/70 border border-amber-200/80 rounded-2xl text-center py-3.5 px-6 text-xs sm:text-sm font-bold text-amber-900 flex flex-col sm:flex-row items-center justify-center gap-3 shadow-xs">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-amber-700" />
+                    <span>Curieux du résultat final ?</span>
+                  </div>
+                  <button
+                    onClick={() => setIsSimulationMode(true)}
+                    className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-4 py-1.5 rounded-full border border-amber-300/90 shadow-2xs flex items-center gap-1.5 cursor-pointer transition font-bold"
+                  >
+                    <Eye className="w-4 h-4 text-amber-800" />
+                    <span>Simuler le rendu du Jour J 👶</span>
+                  </button>
+                </div>
               )}
             </>
           )}

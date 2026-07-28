@@ -16,10 +16,10 @@ export const ScoreSidebar: React.FC<ScoreSidebarProps> = ({
       
       {/* Sidebar Header */}
       <div>
-        <h3 className="text-xl font-serif font-bold text-slate-800 leading-snug">
+        <h3 className="text-lg font-bold text-slate-800 leading-snug">
           Aperçu de Votre Score Potentiel
         </h3>
-        <p className="text-xs text-teal-900/70 mt-1">
+        <p className="text-xs text-slate-600 font-medium mt-1">
           Score estimé si vos prédictions s'avèrent exactes !
         </p>
       </div>
