@@ -5,7 +5,9 @@ import { Leaderboard } from './components/Leaderboard';
 import { ParentsMode } from './components/ParentsMode';
 import { ParentsAuthModal } from './components/ParentsAuthModal';
 import { SuccessModal } from './components/SuccessModal';
+import { BirthResultsView } from './components/BirthResultsView';
 import { Prediction, ActualBirthData } from './types/prediction';
+import { Sparkles, Eye } from 'lucide-react';
 import {
   fetchPredictions,
   savePrediction,
@@ -18,13 +20,14 @@ export default function App() {
   const [predictionsList, setPredictionsList] = useState<Prediction[]>([]);
   const [actualBirthData, setActualBirthData] = useState<ActualBirthData>({
     gender: 'fille',
-    birth_date: '2026-08-15T02:15:00.000Z',
+    birth_date: '2026-09-21T04:30:00.000Z',
     first_name: 'Elena',
     who_cried_first: 'maman',
     weight_grams: 3350,
     height_cm: 50,
   });
 
+  const [isSimulationMode, setIsSimulationMode] = useState(false);
   const [showParentsAuthModal, setShowParentsAuthModal] = useState(false);
   const [isParentsAuthenticated, setIsParentsAuthenticated] = useState(() => {
     return sessionStorage.getItem('parents_authenticated') === 'true';
@@ -42,7 +45,7 @@ export default function App() {
           fetchBirthResults(),
         ]);
         setPredictionsList(preds);
-        setActualBirthData(birthData);
+        if (birthData) setActualBirthData(birthData);
       } catch (err) {
         console.error('Erreur lors du chargement des données:', err);
       } finally {
@@ -53,6 +56,7 @@ export default function App() {
   }, []);
 
   const handleTabChange = (targetTab: 'form' | 'leaderboard' | 'parents') => {
+    setIsSimulationMode(false);
     if (targetTab === 'parents' && !isParentsAuthenticated) {
       setShowParentsAuthModal(true);
       return;
@@ -82,6 +86,7 @@ export default function App() {
   const handleSaveActualBirthData = async (newData: ActualBirthData) => {
     const saved = await saveBirthResults(newData);
     setActualBirthData(saved);
+    setIsSimulationMode(true);
   };
 
   return (
@@ -96,6 +101,21 @@ export default function App() {
           isParentsAuthenticated={isParentsAuthenticated}
         />
 
+        {/* Simulation Banner Switcher */}
+        {!isSimulationMode && (
+          <div className="bg-amber-100/70 border-b border-amber-200 text-center py-2 px-4 text-xs font-bold text-amber-900 flex items-center justify-center gap-2">
+            <Sparkles className="w-4 h-4 text-amber-700" />
+            <span>Curieux du résultat final ?</span>
+            <button
+              onClick={() => setIsSimulationMode(true)}
+              className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-3 py-1 rounded-full border border-amber-300/80 shadow-2xs flex items-center gap-1 cursor-pointer transition ml-1"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span>Simuler le rendu du Jour J 👶</span>
+            </button>
+          </div>
+        )}
+
         {/* Main Content Area */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 pb-16">
           {isLoading ? (
@@ -103,6 +123,12 @@ export default function App() {
               <div className="w-10 h-10 border-4 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
               <p className="text-sm font-medium">Chargement des pronostics...</p>
             </div>
+          ) : isSimulationMode ? (
+            <BirthResultsView
+              predictions={predictionsList}
+              actualBirthData={actualBirthData}
+              onResetSimulation={() => setIsSimulationMode(false)}
+            />
           ) : (
             <>
               {activeTab === 'form' && (

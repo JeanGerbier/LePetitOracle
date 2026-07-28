@@ -1,5 +1,5 @@
 import React from 'react';
-import { Send, Info, Sparkles } from 'lucide-react';
+import { Send, AlertCircle } from 'lucide-react';
 import { ScoreBreakdown } from '../types/prediction';
 
 interface ScoreSidebarProps {
@@ -16,10 +16,6 @@ export const ScoreSidebar: React.FC<ScoreSidebarProps> = ({
       
       {/* Sidebar Header */}
       <div>
-        <div className="flex items-center gap-1.5 text-teal-800 text-xs font-bold uppercase tracking-wider mb-1">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Calcul En Temps Réel</span>
-        </div>
         <h3 className="text-xl font-serif font-bold text-slate-800 leading-snug">
           Aperçu de Votre Score Potentiel
         </h3>
@@ -130,8 +126,8 @@ export const ScoreSidebar: React.FC<ScoreSidebarProps> = ({
       </button>
 
       <div className="text-center pt-1">
-        <span className="text-[11px] text-teal-900/60 inline-flex items-center gap-1">
-          <Info className="w-3.5 h-3.5 text-teal-700" /> Vous pourrez modifier jusqu'au jour J
+        <span className="text-[11px] text-amber-900/80 font-medium inline-flex items-center gap-1.5 justify-center">
+          <AlertCircle className="w-3.5 h-3.5 text-amber-700 shrink-0" /> Ne pourra plus être modifié une fois envoyé
         </span>
       </div>
 

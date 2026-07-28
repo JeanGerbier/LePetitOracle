@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { Calendar } from 'lucide-react';
+import { Calendar, AlertCircle } from 'lucide-react';
 import { Prediction, WhoCriesFirst, Gender } from '../types/prediction';
 import { calculatePotentialScore } from '../utils/scoring';
+import { checkIfPredictionExists } from '../lib/supabase';
 import { StepProgress } from './StepProgress';
 import { ScoreSidebar } from './ScoreSidebar';
 
@@ -10,45 +11,92 @@ interface PredictionFormProps {
 }
 
 export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
-  const [userName, setUserName] = useState('Camille L.');
-  const [birthDate, setBirthDate] = useState('2026-09-21');
+  const [userName, setUserName] = useState('');
+  const [birthDate, setBirthDate] = useState('');
   const [birthHours, setBirthHours] = useState('01');
   const [birthMinutes, setBirthMinutes] = useState('00');
-  const [gender, setGender] = useState<Gender>('fille');
+  const [gender, setGender] = useState<Gender | null>(null);
   const [firstNameGuess, setFirstNameGuess] = useState('');
-  const [whoCriesFirst, setWhoCriesFirst] = useState<WhoCriesFirst>('papa');
+  const [whoCriesFirst, setWhoCriesFirst] = useState<WhoCriesFirst | null>(null);
   const [weightGrams, setWeightGrams] = useState(3300);
   const [heightCm, setHeightCm] = useState(50);
+  const [hasTouchedSlider, setHasTouchedSlider] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [duplicateError, setDuplicateError] = useState('');
 
   const scoreBreakdown = useMemo(() => {
     return calculatePotentialScore(
-      gender,
+      gender || '',
       firstNameGuess,
       birthDate,
       birthHours,
       birthMinutes,
-      whoCriesFirst,
+      whoCriesFirst || '',
       weightGrams,
       heightCm
     );
   }, [gender, firstNameGuess, birthDate, birthHours, birthMinutes, whoCriesFirst, weightGrams, heightCm]);
 
+  const progressPercent = useMemo(() => {
+    let filled = 0;
+    const total = 6;
+
+    if (userName.trim().length > 0) filled++;
+    if (birthDate && birthHours !== '' && birthMinutes !== '') filled++;
+    if (gender !== null) filled++;
+    if (firstNameGuess.trim().length > 0) filled++;
+    if (whoCriesFirst !== null) filled++;
+    if (hasTouchedSlider) filled++;
+
+    return Math.round((filled / total) * 100);
+  }, [userName, birthDate, birthHours, birthMinutes, gender, firstNameGuess, whoCriesFirst, hasTouchedSlider]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!userName.trim()) {
-      alert('Veuillez entrer votre prénom ou pseudo.');
+    setDuplicateError('');
+
+    const trimmedName = userName.trim();
+    if (!trimmedName) {
+      setDuplicateError('Veuillez inscrire votre prénom et nom en haut du formulaire.');
+      return;
+    }
+    if (!birthDate) {
+      setDuplicateError('Veuillez choisir une date estimée d\'accouchement.');
+      return;
+    }
+    if (!gender) {
+      setDuplicateError('Veuillez choisir le sexe (Fille ou Garçon).');
+      return;
+    }
+    if (!whoCriesFirst) {
+      setDuplicateError('Veuillez choisir qui pleurera en premier.');
       return;
     }
 
     setIsSubmitting(true);
     try {
+      // 1. Vérification si cet appareil ou ce prénom a déjà soumis
+      const alreadySubmittedDevice = localStorage.getItem('le_petit_oracle_submitted') === 'true';
+      if (alreadySubmittedDevice) {
+        const previousName = localStorage.getItem('le_petit_oracle_user_name') || 'cet appareil';
+        setDuplicateError(`Un pronostic a déjà été enregistré depuis votre appareil (au nom de "${previousName}").`);
+        setIsSubmitting(false);
+        return;
+      }
+
+      const existsInDb = await checkIfPredictionExists(trimmedName);
+      if (existsInDb) {
+        setDuplicateError(`Un pronostic existe déjà au nom de "${trimmedName}". Merci de préciser votre prénom et nom !`);
+        setIsSubmitting(false);
+        return;
+      }
+
       const formattedHours = birthHours.padStart(2, '0');
       const formattedMinutes = birthMinutes.padStart(2, '0');
       const isoBirthDate = new Date(`${birthDate}T${formattedHours}:${formattedMinutes}:00`).toISOString();
 
       await onSubmit({
-        user_name: userName.trim(),
+        user_name: trimmedName,
         gender,
         birth_date: isoBirthDate,
         first_name_guess: firstNameGuess.trim(),
@@ -56,6 +104,14 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
         weight_grams: weightGrams,
         height_cm: heightCm,
       });
+
+      // Mémoriser la soumission sur cet appareil
+      localStorage.setItem('le_petit_oracle_submitted', 'true');
+      localStorage.setItem('le_petit_oracle_user_name', trimmedName);
+
+    } catch (err) {
+      console.error(err);
+      setDuplicateError('Une erreur est survenue lors de l\'enregistrement. Réessayez.');
     } finally {
       setIsSubmitting(false);
     }
@@ -91,26 +147,40 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           </p>
         </div>
 
-        {/* User Identity Pill */}
-        <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-stone-200 shadow-sm w-full sm:w-auto">
-          <div className="w-8 h-8 rounded-full bg-amber-200 border border-amber-300 flex items-center justify-center text-amber-800 font-bold text-sm shrink-0">
-            👧
-          </div>
-          <div className="flex flex-col">
+        {/* User Identity Box */}
+        <div className="flex flex-col gap-1 bg-white px-4 py-2.5 rounded-2xl border border-stone-200 shadow-xs w-full sm:w-auto">
+          <label className="text-[10px] font-extrabold uppercase tracking-wider text-teal-800">
+            Votre Prénom & Nom <span className="text-rose-500">*</span>
+          </label>
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-amber-200 border border-amber-300 flex items-center justify-center text-amber-900 font-bold text-xs shrink-0">
+              ✍️
+            </div>
             <input
               type="text"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              className="text-sm font-bold text-slate-800 bg-transparent border-none focus:outline-none focus:ring-0 w-32"
-              placeholder="Votre Prénom"
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setDuplicateError('');
+              }}
+              className="text-sm font-bold text-slate-800 bg-transparent border-none focus:outline-none focus:ring-0 w-full sm:w-48 placeholder:text-slate-400 placeholder:font-normal"
+              placeholder="ex: Mamie Chantal"
               required
             />
           </div>
         </div>
       </div>
 
+      {/* Duplicate Error Banner */}
+      {duplicateError && (
+        <div className="bg-rose-50 border-2 border-rose-200 text-rose-900 p-4 rounded-2xl text-xs sm:text-sm font-bold flex items-center gap-3 shadow-xs animate-fade-in">
+          <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
+          <span>{duplicateError}</span>
+        </div>
+      )}
+
       {/* Progress Step Bar */}
-      <StepProgress currentStep={2} totalSteps={3} label="L'Arrivée" percent={65} />
+      <StepProgress percent={progressPercent} />
 
       {/* Main Grid Layout */}
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -258,25 +328,13 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <span>😭</span> Qui pleurera en premier ?
             </h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
-              
-              {/* Left Green Baby Card */}
-              <div className="sm:col-span-3 bg-[#6B9E8B] text-white p-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-md min-h-[140px]">
-                <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center text-3xl mb-2 backdrop-blur-xs">
-                  👶
-                </div>
-                <span className="text-xs font-extrabold tracking-wider uppercase opacity-95">
-                  Émotion Pure
-                </span>
-              </div>
-
-              {/* 3 Interactive Option Cards */}
-              <div className="sm:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-3">
-                {[
-                  { id: 'maman', label: 'La Maman', icon: '🤱' },
-                  { id: 'papa', label: 'Le Papa', icon: '🧔' },
-                  { id: 'les_deux', label: 'Les parents en même temps', icon: '😭' }
-                ].map((option) => (
+            {/* 3 Interactive Option Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {[
+                { id: 'maman', label: 'La Maman', icon: '🤱' },
+                { id: 'papa', label: 'Le Papa', icon: '🧔' },
+                { id: 'les_deux', label: 'Les parents en même temps', icon: '😭' }
+              ].map((option) => (
                   <button
                     key={option.id}
                     type="button"
@@ -295,8 +353,6 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     </span>
                   </button>
                 ))}
-              </div>
-
             </div>
           </div>
 
@@ -316,7 +372,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     min="2000"
                     max="5000"
                     value={weightGrams}
-                    onChange={(e) => setWeightGrams(Number(e.target.value))}
+                    onChange={(e) => {
+                      setWeightGrams(Number(e.target.value));
+                      setHasTouchedSlider(true);
+                    }}
                     className="w-16 text-right font-bold text-slate-800 text-sm bg-transparent focus:outline-none"
                   />
                   <span className="text-xs text-slate-500 font-semibold">g</span>
@@ -328,7 +387,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 max="4800"
                 step="50"
                 value={weightGrams}
-                onChange={(e) => setWeightGrams(Number(e.target.value))}
+                onChange={(e) => {
+                  setWeightGrams(Number(e.target.value));
+                  setHasTouchedSlider(true);
+                }}
                 className="w-full accent-teal-600 cursor-pointer h-2 bg-stone-200 rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400 mt-1.5">
@@ -351,7 +413,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     min="40"
                     max="60"
                     value={heightCm}
-                    onChange={(e) => setHeightCm(Number(e.target.value))}
+                    onChange={(e) => {
+                      setHeightCm(Number(e.target.value));
+                      setHasTouchedSlider(true);
+                    }}
                     className="w-16 text-right font-bold text-slate-800 text-sm bg-transparent focus:outline-none"
                   />
                   <span className="text-xs text-slate-500 font-semibold">cm</span>
@@ -363,7 +428,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 max="58"
                 step="1"
                 value={heightCm}
-                onChange={(e) => setHeightCm(Number(e.target.value))}
+                onChange={(e) => {
+                  setHeightCm(Number(e.target.value));
+                  setHasTouchedSlider(true);
+                }}
                 className="w-full accent-teal-600 cursor-pointer h-2 bg-stone-200 rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400 mt-1.5">

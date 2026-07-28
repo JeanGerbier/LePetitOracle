@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
 import { calculateFinalScore } from '../utils/scoring';
-import { Crown, Trophy, PartyPopper, ChevronDown, ChevronUp, Save, LogOut, Check } from 'lucide-react';
+import { Crown, Trophy, ChevronDown, ChevronUp, Save, LogOut, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface ParentsModeProps {
@@ -26,18 +26,32 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
     setActualData(initialActualData);
   }, [initialActualData]);
 
-  // Launch celebratory confetti when entering parents mode
-  useEffect(() => {
-    try {
-      confetti({
-        particleCount: 60,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    } catch {
-      // Ignorer si non disponible
+  const formatWhoCries = (val: string) => {
+    switch (val) {
+      case 'maman':
+        return '🤱 La maman';
+      case 'papa':
+        return '🧔 Le papa';
+      case 'les_deux':
+        return '😭 Les parents';
+      default:
+        return val || '-';
     }
-  }, []);
+  };
+
+  const formatDateString = (isoString: string) => {
+    try {
+      const d = new Date(isoString);
+      if (isNaN(d.getTime())) return isoString;
+      const day = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+      const time = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      return `${day} à ${time}`;
+    } catch {
+      return isoString || '-';
+    }
+  };
+
+
 
   // Helper date inputs
   const rawDateOnly = actualData.birth_date.substring(0, 10);
@@ -104,11 +118,6 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
         </div>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
-          <div className="flex items-center justify-center gap-2 bg-white px-4 py-2.5 rounded-2xl shadow-xs text-sm font-bold text-slate-800 border border-amber-200">
-            <PartyPopper className="w-5 h-5 text-amber-500 animate-bounce" />
-            <span>Le Jour J est arrivé !</span>
-          </div>
-          
           <button
             onClick={onLogout}
             className="bg-white/80 hover:bg-white text-slate-600 hover:text-slate-900 text-xs font-bold px-3.5 py-2.5 rounded-2xl border border-stone-200 flex items-center justify-center gap-1.5 transition cursor-pointer"
@@ -225,7 +234,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                 ? 'Sauvegarde...'
                 : savedSuccess
                 ? 'Résultats enregistrés et publiés ! 🎉'
-                : 'Publier les résultats officiels dans Supabase'}
+                : 'Publier les résultats officiels'}
             </span>
           </button>
         </div>
@@ -300,32 +309,48 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                   </div>
                 </div>
 
-                {/* Score breakdown dropdown details */}
+                {/* Detailed predictions and score breakdown dropdown */}
                 {isExpanded && (
-                  <div className="bg-white/80 border-t border-stone-200/60 p-4 grid grid-cols-2 sm:grid-cols-6 gap-2 text-center text-xs">
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Sexe</span>
-                      <span className="font-bold text-teal-800">+{rank.genderScore} pts</span>
-                    </div>
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Prénom</span>
-                      <span className="font-bold text-teal-800">+{rank.firstNameScore} pts</span>
-                    </div>
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Date/Heure</span>
-                      <span className="font-bold text-teal-800">+{rank.dateTimeScore} pts</span>
-                    </div>
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Pleur</span>
-                      <span className="font-bold text-teal-800">+{rank.criesScore} pts</span>
-                    </div>
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Poids</span>
-                      <span className="font-bold text-teal-800">+{rank.weightScore} pts</span>
-                    </div>
-                    <div className="bg-stone-50 p-2 rounded-xl">
-                      <span className="text-slate-400 block text-[10px]">Taille</span>
-                      <span className="font-bold text-teal-800">+{rank.heightScore} pts</span>
+                  <div className="bg-white/90 border-t border-stone-200/80 p-4 space-y-3">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 block">
+                      Détail du pari de {rank.user_name} :
+                    </span>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">Sexe parié</span>
+                        <span className="font-bold text-slate-800">{rank.gender === 'fille' ? '🍳 Fille' : '⛵ Garçon'}</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.genderScore} pts</span>
+                      </div>
+
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">Prénom deviné</span>
+                        <span className="font-bold text-slate-800">{rank.first_name_guess || 'Secret'}</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.firstNameScore} pts</span>
+                      </div>
+
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">Date & Heure</span>
+                        <span className="font-bold text-slate-800">{formatDateString(rank.birth_date)}</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.dateTimeScore} pts</span>
+                      </div>
+
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">1er Pleur</span>
+                        <span className="font-bold text-slate-800">{formatWhoCries(rank.who_cries_first)}</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.criesScore} pts</span>
+                      </div>
+
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">Poids deviné</span>
+                        <span className="font-bold text-slate-800">{rank.weight_grams} g</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.weightScore} pts</span>
+                      </div>
+
+                      <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
+                        <span className="text-slate-400 block text-[10px] font-medium">Taille devinée</span>
+                        <span className="font-bold text-slate-800">{rank.height_cm} cm</span>
+                        <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.heightScore} pts</span>
+                      </div>
                     </div>
                   </div>
                 )}

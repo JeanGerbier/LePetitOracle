@@ -99,6 +99,40 @@ export async function fetchPredictions(): Promise<Prediction[]> {
 }
 
 /**
+ * Vérifier si un pronostic existe déjà avec ce nom (antidoublon)
+ */
+export async function checkIfPredictionExists(userName: string): Promise<boolean> {
+  const nameTrimmed = userName.trim().toLowerCase();
+  if (!nameTrimmed) return false;
+
+  if (supabase && isSupabaseConfigured) {
+    try {
+      const { data } = await supabase
+        .from('petitoracle_predictions')
+        .select('user_name');
+      if (data) {
+        return data.some(p => p.user_name.trim().toLowerCase() === nameTrimmed);
+      }
+    } catch (err) {
+      console.warn('Erreur verification doublon Supabase:', err);
+    }
+  }
+
+  // Fallback LocalStorage
+  const cached = localStorage.getItem(LOCAL_PREDICTIONS_KEY);
+  if (cached) {
+    try {
+      const list: Prediction[] = JSON.parse(cached);
+      return list.some(p => p.user_name.trim().toLowerCase() === nameTrimmed);
+    } catch {
+      // Ignorer
+    }
+  }
+
+  return false;
+}
+
+/**
  * Ajouter un nouveau pronostic dans petitoracle_predictions
  */
 export async function savePrediction(
