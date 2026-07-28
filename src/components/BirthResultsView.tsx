@@ -95,44 +95,56 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
           <span>Bébé est arrivé ! 🎉</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl font-serif font-black text-slate-900 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-slate-800 mb-1">
           Bienvenue au monde !
         </h1>
+
+        {/* Prénom en très grand */}
+        <h2 className="text-4xl sm:text-6xl font-serif font-black text-teal-900 tracking-tight my-2">
+          {actualBirthData.first_name || 'Elena'}
+        </h2>
+
         <p className="text-slate-600 text-sm sm:text-base max-w-xl mx-auto font-medium">
           Les résultats officiels sont enregistrés. Voici le récapitulatif de la naissance et le classement final de la tribu !
         </p>
 
-        {/* Fiche Officielle Bébé */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center">
+        {/* Fiche Officielle Bébé (5 cartes identiques) */}
+        <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 max-w-4xl mx-auto">
+          {/* Card 1: Sexe */}
+          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
             <span className="text-2xl mb-1">{actualBirthData.gender === 'fille' ? '🍳' : '⛵'}</span>
-            <span className="text-xs text-slate-400 font-semibold uppercase">Sexe</span>
-            <span className="text-base font-bold text-slate-800 capitalize">{actualBirthData.gender === 'fille' ? 'Fille' : 'Garçon'}</span>
+            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Sexe</span>
+            <span className="text-sm sm:text-base font-bold text-slate-800 capitalize">{actualBirthData.gender === 'fille' ? 'Fille' : 'Garçon'}</span>
           </div>
 
-          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center">
+          {/* Card 2: Date & Heure */}
+          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
             <Calendar className="w-6 h-6 text-teal-700 mb-1" />
-            <span className="text-xs text-slate-400 font-semibold uppercase">Date & Heure</span>
-            <span className="text-sm font-bold text-slate-800">{formatDate(actualBirthData.birth_date)}</span>
+            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Date & Heure</span>
+            <span className="text-xs sm:text-sm font-bold text-slate-800">{formatDate(actualBirthData.birth_date)}</span>
             <span className="text-xs text-slate-500 font-medium">{formatTime(actualBirthData.birth_date)}</span>
           </div>
 
-          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center">
+          {/* Card 3: Premier Pleur */}
+          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
+            <span className="text-2xl mb-1">😭</span>
+            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Premier Pleur</span>
+            <span className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">{formatWhoCries(actualBirthData.who_cried_first)}</span>
+          </div>
+
+          {/* Card 4: Poids */}
+          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
             <Weight className="w-6 h-6 text-amber-600 mb-1" />
-            <span className="text-xs text-slate-400 font-semibold uppercase">Poids</span>
-            <span className="text-base font-bold text-slate-800">{actualBirthData.weight_grams} g</span>
+            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Poids</span>
+            <span className="text-sm sm:text-base font-bold text-slate-800">{actualBirthData.weight_grams} g</span>
           </div>
 
-          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center">
+          {/* Card 5: Taille */}
+          <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
             <Ruler className="w-6 h-6 text-indigo-600 mb-1" />
-            <span className="text-xs text-slate-400 font-semibold uppercase">Taille</span>
-            <span className="text-base font-bold text-slate-800">{actualBirthData.height_cm} cm</span>
+            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Taille</span>
+            <span className="text-sm sm:text-base font-bold text-slate-800">{actualBirthData.height_cm} cm</span>
           </div>
-        </div>
-
-        <div className="mt-4 bg-white/70 backdrop-blur-xs max-w-md mx-auto p-3 rounded-2xl border border-amber-200/60 text-xs font-bold text-slate-700 flex items-center justify-center gap-2">
-          <span>😭 Premier pleur :</span>
-          <span className="text-teal-800">{formatWhoCries(actualBirthData.who_cried_first)}</span>
         </div>
       </div>
 
