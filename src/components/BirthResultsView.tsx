@@ -1,7 +1,7 @@
 import React from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
 import { calculateFinalScore } from '../utils/scoring';
-import { Trophy, Award, Sparkles, Calendar, Weight, Ruler, RotateCcw } from 'lucide-react';
+import { Trophy, Award, Sparkles, RotateCcw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface BirthResultsViewProps {
@@ -112,14 +112,14 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
         <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 max-w-4xl mx-auto">
           {/* Card 1: Sexe */}
           <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
-            <span className="text-2xl mb-1">{actualBirthData.gender === 'fille' ? '🍳' : '⛵'}</span>
+            <img src={actualBirthData.gender === 'fille' ? '/assets/fille.png' : '/assets/garcon.png'} alt="Sexe" className="w-8 h-8 object-contain mb-1" />
             <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Sexe</span>
             <span className="text-sm sm:text-base font-bold text-slate-800 capitalize">{actualBirthData.gender === 'fille' ? 'Fille' : 'Garçon'}</span>
           </div>
 
           {/* Card 2: Date & Heure */}
           <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
-            <Calendar className="w-6 h-6 text-teal-700 mb-1" />
+            <img src="/assets/date.png" alt="Date et Heure" className="w-8 h-8 object-contain mb-1" />
             <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Date & Heure</span>
             <span className="text-xs sm:text-sm font-bold text-slate-800">{formatDate(actualBirthData.birth_date)}</span>
             <span className="text-xs text-slate-500 font-medium">{formatTime(actualBirthData.birth_date)}</span>
@@ -127,21 +127,31 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
 
           {/* Card 3: Premier Pleur */}
           <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
-            <span className="text-2xl mb-1">😭</span>
+            <img 
+              src={
+                actualBirthData.who_cried_first === 'maman' 
+                  ? '/assets/maman.png' 
+                  : actualBirthData.who_cried_first === 'papa' 
+                  ? '/assets/papa.png' 
+                  : '/assets/papa-maman.png'
+              } 
+              alt="Premier Pleur" 
+              className="w-8 h-8 object-contain mb-1" 
+            />
             <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Premier Pleur</span>
             <span className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">{formatWhoCries(actualBirthData.who_cried_first)}</span>
           </div>
 
           {/* Card 4: Poids */}
           <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
-            <Weight className="w-6 h-6 text-amber-600 mb-1" />
+            <img src="/assets/poids.png" alt="Poids" className="w-8 h-8 object-contain mb-1" />
             <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Poids</span>
             <span className="text-sm sm:text-base font-bold text-slate-800">{actualBirthData.weight_grams} g</span>
           </div>
 
           {/* Card 5: Taille */}
           <div className="bg-white/90 p-4 rounded-2xl border border-amber-200/80 shadow-xs flex flex-col items-center justify-center text-center">
-            <Ruler className="w-6 h-6 text-indigo-600 mb-1" />
+            <img src="/assets/taille.png" alt="Taille" className="w-8 h-8 object-contain mb-1" />
             <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-wider mb-0.5">Taille</span>
             <span className="text-sm sm:text-base font-bold text-slate-800">{actualBirthData.height_cm} cm</span>
           </div>
