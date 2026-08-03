@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { AlertCircle, Send } from 'lucide-react';
+import { AlertCircle, Send, User } from 'lucide-react';
 import { Prediction, WhoCriesFirst, Gender } from '../types/prediction';
 import { calculatePotentialScore } from '../utils/scoring';
 import { checkIfPredictionExists } from '../lib/supabase';
@@ -161,12 +161,12 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
 
         {/* --- CARD 0: Votre Profil (12 cols) --- */}
-        <div className="bg-[#F3F6F8] border border-[#DCE4E8] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
-          <div className="sm:w-36 bg-[#BCCCD4] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#2C3E47] shrink-0">
-            <div className="w-12 h-12 rounded-full bg-white/60 border border-white/80 flex items-center justify-center text-2xl shadow-xs">
-              👋
+        <div className="bg-[#F7F4FA] border border-[#E5D9F2] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
+          <div className="sm:w-36 bg-[#C5B4E3] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#4A3267] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-white/70 border border-white/90 shadow-xs flex items-center justify-center">
+              <User className="w-6 h-6 text-[#4A3267]" />
             </div>
-            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#2C3E47]/90 mt-1">
+            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#4A3267]/90 mt-2">
               Votre Profil
             </span>
           </div>
@@ -182,11 +182,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 setUserName(e.target.value);
                 setDuplicateError('');
               }}
-              className="w-full bg-white/90 border border-[#BCCCD4] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 shadow-xs placeholder:font-normal placeholder:text-slate-400"
+              className="w-full bg-white/90 border border-[#D5C4EC] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-xs placeholder:font-normal placeholder:text-slate-400"
               placeholder="ex: Mamie Chantal"
               required
             />
-            <p className="text-[11px] text-slate-500 italic font-medium">
+            <p className="text-[11px] text-[#6B508C] italic font-medium">
               Permet d'enregistrer votre pronostic à votre nom sur le classement de la tribu !
             </p>
           </div>
