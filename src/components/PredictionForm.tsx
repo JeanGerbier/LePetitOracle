@@ -168,7 +168,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
           <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center space-y-1.5">
             <label className="font-bold text-slate-800 text-base block">
-              Votre Prénom & Nom <span className="text-rose-500">*</span>
+              L'Auteur de la Prophétie <span className="text-rose-500 text-xs font-semibold">(obligatoire)</span>
             </label>
             <input
               type="text"
@@ -352,7 +352,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   <img 
                     src={option.icon} 
                     alt={option.label} 
-                    className={`${option.id === 'les_deux' ? 'w-14 h-14' : 'w-12 h-12'} object-contain drop-shadow-2xs`} 
+                    className={`${option.id === 'les_deux' ? 'w-16 h-14 scale-115' : 'w-12 h-12'} object-contain drop-shadow-2xs`} 
                   />
                   <span className="text-xs font-bold text-slate-800">
                     {option.label}
