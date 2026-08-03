@@ -200,16 +200,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
             {/* Formulaire droite */}
             <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between">
-              <div className="flex flex-wrap items-center justify-between gap-1 mb-2">
-                <span className="font-bold text-slate-800 text-base block">
-                  La Date et l'Heure
-                </span>
-                <p className="text-[10px] text-[#2D586C] font-semibold italic flex items-center gap-1 bg-white/70 px-2 py-0.5 rounded-lg border border-[#A7C8D8]/50">
-                  <span>🎂</span> Sortie du four : 21 sept.
-                </p>
-              </div>
+              <span className="font-bold text-slate-800 text-base block mb-1">
+                La Date et l'Heure
+              </span>
 
-              <div className="flex-1 flex flex-col justify-center">
+              <div className="flex-1 flex flex-col justify-center space-y-1.5">
                 <div className="grid grid-cols-12 gap-2 items-end">
                   {/* Date estimée (6 cols) */}
                   <div className="col-span-6">
@@ -261,6 +256,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     </div>
                   </div>
                 </div>
+
+                <p className="text-[10px] text-[#2D586C] font-semibold italic">
+                  Sortie du four : 21 sept.
+                </p>
               </div>
             </div>
           </div>
