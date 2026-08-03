@@ -213,7 +213,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                       type="date"
                       value={birthDate}
                       onChange={(e) => setBirthDate(e.target.value)}
-                      className="w-full bg-white/90 border border-[#A7C8D8] rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
+                      className="w-full h-[34px] bg-white/90 border border-[#A7C8D8] rounded-xl px-2.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
                       required
                     />
                   </div>
@@ -221,7 +221,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   {/* Heure (3 cols) */}
                   <div className="col-span-3">
                     <label className="text-xs font-semibold text-slate-600 block mb-1">Heure</label>
-                    <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 py-1 shadow-xs">
+                    <div className="flex items-center h-[34px] bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 shadow-xs">
                       <input
                         type="number"
                         min="0"
@@ -240,7 +240,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   {/* Minute (3 cols) */}
                   <div className="col-span-3">
                     <label className="text-xs font-semibold text-slate-600 block mb-1">Minute</label>
-                    <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 py-1 shadow-xs">
+                    <div className="flex items-center h-[34px] bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 shadow-xs">
                       <input
                         type="number"
                         min="0"
