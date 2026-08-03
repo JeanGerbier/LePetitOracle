@@ -110,19 +110,19 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
   };
 
   const handleIncrementHour = () => {
-    setBirthHours(prev => String(Math.min(23, Number(prev) + 1)).padStart(2, '0'));
+    setBirthHours(prev => String((Number(prev) + 1) % 24).padStart(2, '0'));
   };
 
   const handleDecrementHour = () => {
-    setBirthHours(prev => String(Math.max(0, Number(prev) - 1)).padStart(2, '0'));
+    setBirthHours(prev => String((Number(prev) - 1 + 24) % 24).padStart(2, '0'));
   };
 
   const handleIncrementMinute = () => {
-    setBirthMinutes(prev => String(Math.min(59, Number(prev) + 1)).padStart(2, '0'));
+    setBirthMinutes(prev => String((Number(prev) + 1) % 60).padStart(2, '0'));
   };
 
   const handleDecrementMinute = () => {
-    setBirthMinutes(prev => String(Math.max(0, Number(prev) - 1)).padStart(2, '0'));
+    setBirthMinutes(prev => String((Number(prev) - 1 + 60) % 60).padStart(2, '0'));
   };
 
   return (
@@ -219,11 +219,15 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                         max="23"
                         value={birthHours}
                         onChange={(e) => setBirthHours(e.target.value)}
-                        className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none"
+                        onBlur={() => {
+                          const num = Math.max(0, Math.min(23, Number(birthHours) || 0));
+                          setBirthHours(String(num).padStart(2, '0'));
+                        }}
+                        className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none no-spinner"
                       />
                       <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-0.5">
-                        <button type="button" onClick={handleIncrementHour} className="hover:text-teal-700 font-bold">▲</button>
-                        <button type="button" onClick={handleDecrementHour} className="hover:text-[#2D586C] font-bold">▼</button>
+                        <button type="button" onClick={handleIncrementHour} className="hover:text-teal-700 font-bold leading-none py-0.5">▲</button>
+                        <button type="button" onClick={handleDecrementHour} className="hover:text-[#2D586C] font-bold leading-none py-0.5">▼</button>
                       </div>
                     </div>
                   </div>
@@ -238,11 +242,15 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                         max="59"
                         value={birthMinutes}
                         onChange={(e) => setBirthMinutes(e.target.value)}
-                        className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none"
+                        onBlur={() => {
+                          const num = Math.max(0, Math.min(59, Number(birthMinutes) || 0));
+                          setBirthMinutes(String(num).padStart(2, '0'));
+                        }}
+                        className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none no-spinner"
                       />
                       <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-0.5">
-                        <button type="button" onClick={handleIncrementMinute} className="hover:text-teal-700 font-bold">▲</button>
-                        <button type="button" onClick={handleDecrementMinute} className="hover:text-teal-700 font-bold">▼</button>
+                        <button type="button" onClick={handleIncrementMinute} className="hover:text-teal-700 font-bold leading-none py-0.5">▲</button>
+                        <button type="button" onClick={handleDecrementMinute} className="hover:text-teal-700 font-bold leading-none py-0.5">▼</button>
                       </div>
                     </div>
                   </div>

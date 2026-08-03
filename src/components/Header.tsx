@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
           <img 
             src="/assets/logo.png" 
             alt="Le Petit Oracle" 
-            className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+            className="h-8 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
           />
         </div>
 

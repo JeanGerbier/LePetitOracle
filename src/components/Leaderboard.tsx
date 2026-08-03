@@ -1,6 +1,6 @@
 import React from 'react';
 import { Prediction } from '../types/prediction';
-import { Users, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { capitalizeName } from '../utils/scoring';
 
 interface LeaderboardProps {
@@ -39,20 +39,14 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   return (
     <div className="animate-fade-in max-w-5xl mx-auto space-y-6">
       
-      {/* Top Title */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-xs">
-        <div>
-          <div className="flex items-center gap-2 text-teal-800 text-xs font-bold uppercase tracking-wider mb-1">
-            <Users className="w-4 h-4" />
-            <span>Pronostics de la Tribu</span>
-          </div>
-          <h1 className="text-3xl font-serif font-bold text-slate-800">
-            Le Mural des Prédictions ({predictions.length})
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            Découvrez ce que les proches ont parié pour l'arrivée de bébé !
-          </p>
-        </div>
+      {/* Top Title Header Bar */}
+      <div>
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
+          Le Mural des Prédictions ({predictions.length})
+        </h1>
+        <p className="text-sm text-slate-500 mt-1">
+          Découvrez ce que les proches ont parié pour l'arrivée de bébé !
+        </p>
       </div>
 
       {/* Grid of Predictions */}
