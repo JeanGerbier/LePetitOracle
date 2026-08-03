@@ -273,26 +273,26 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => setGender('fille')}
-                className={`p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
+                className={`aspect-square p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                   gender === 'fille'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/fille.png" alt="Fille" className="w-7 h-7 object-contain" />
+                <img src="/assets/fille.png" alt="Fille" className="w-8 h-8 object-contain" />
                 <span className="text-xs font-bold">Fille</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setGender('garcon')}
-                className={`p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
+                className={`aspect-square p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                   gender === 'garcon'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/garcon.png" alt="Garçon" className="w-7 h-7 object-contain" />
+                <img src="/assets/garcon.png" alt="Garçon" className="w-8 h-8 object-contain" />
                 <span className="text-xs font-bold">Garçon</span>
               </button>
             </div>
