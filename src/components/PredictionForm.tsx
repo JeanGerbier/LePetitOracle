@@ -299,12 +299,12 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           </div>
 
           {/* Card 3: Le Prénom (3 cols) */}
-          <div className="md:col-span-3 bg-[#E8F3F0] border border-[#D0E5E0] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
-            <span className="font-bold text-slate-800 text-base mb-2 block">
+          <div className="md:col-span-3 bg-[#E8F3F0] border border-[#D0E5E0] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col hover:shadow-sm transition">
+            <span className="font-bold text-slate-800 text-base mb-1 block">
               Le Prénom
             </span>
 
-            <div className="space-y-2">
+            <div className="flex-1 flex flex-col justify-center space-y-2">
               <input
                 type="text"
                 placeholder="Votre idée..."
