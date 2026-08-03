@@ -199,29 +199,33 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
             </div>
 
             {/* Formulaire droite */}
-            <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between space-y-3">
-              <span className="font-bold text-slate-800 text-base block">
-                La Date et l'Heure
-              </span>
-
-              <div>
-                <label className="text-xs font-semibold text-slate-600 block mb-1">Date estimée</label>
-                <input
-                  type="date"
-                  value={birthDate}
-                  onChange={(e) => setBirthDate(e.target.value)}
-                  className="w-full bg-white/90 border border-[#A7C8D8] rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
-                  required
-                />
-                <p className="text-[10px] text-[#2D586C] font-semibold italic mt-1 flex items-center gap-1 bg-white/70 px-2 py-0.5 rounded-lg border border-[#A7C8D8]/50">
+            <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between space-y-2">
+              <div className="flex flex-wrap items-center justify-between gap-1">
+                <span className="font-bold text-slate-800 text-base block">
+                  La Date et l'Heure
+                </span>
+                <p className="text-[10px] text-[#2D586C] font-semibold italic flex items-center gap-1 bg-white/70 px-2 py-0.5 rounded-lg border border-[#A7C8D8]/50">
                   <span>🎂</span> Sortie du four : 21 sept.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-2">
-                <div>
+              <div className="grid grid-cols-12 gap-2 items-end">
+                {/* Date estimée (6 cols) */}
+                <div className="col-span-6">
+                  <label className="text-xs font-semibold text-slate-600 block mb-1">Date estimée</label>
+                  <input
+                    type="date"
+                    value={birthDate}
+                    onChange={(e) => setBirthDate(e.target.value)}
+                    className="w-full bg-white/90 border border-[#A7C8D8] rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-600 shadow-xs"
+                    required
+                  />
+                </div>
+
+                {/* Heure (3 cols) */}
+                <div className="col-span-3">
                   <label className="text-xs font-semibold text-slate-600 block mb-1">Heure</label>
-                  <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-2 py-1 shadow-xs">
+                  <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 py-1 shadow-xs">
                     <input
                       type="number"
                       min="0"
@@ -230,16 +234,17 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                       onChange={(e) => setBirthHours(e.target.value)}
                       className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none"
                     />
-                    <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-1">
+                    <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-0.5">
                       <button type="button" onClick={handleIncrementHour} className="hover:text-teal-700 font-bold">▲</button>
                       <button type="button" onClick={handleDecrementHour} className="hover:text-[#2D586C] font-bold">▼</button>
                     </div>
                   </div>
                 </div>
 
-                <div>
+                {/* Minute (3 cols) */}
+                <div className="col-span-3">
                   <label className="text-xs font-semibold text-slate-600 block mb-1">Minute</label>
-                  <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-2 py-1 shadow-xs">
+                  <div className="flex items-center bg-white/90 border border-[#A7C8D8] rounded-xl px-1.5 py-1 shadow-xs">
                     <input
                       type="number"
                       min="0"
@@ -248,7 +253,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                       onChange={(e) => setBirthMinutes(e.target.value)}
                       className="w-full text-center bg-transparent text-xs font-bold text-slate-800 focus:outline-none"
                     />
-                    <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-1">
+                    <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-0.5">
                       <button type="button" onClick={handleIncrementMinute} className="hover:text-teal-700 font-bold">▲</button>
                       <button type="button" onClick={handleDecrementMinute} className="hover:text-teal-700 font-bold">▼</button>
                     </div>
