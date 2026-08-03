@@ -42,7 +42,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
       {/* Top Title Header Bar */}
       <div>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
-          Le Mural des Prédictions ({predictions.length})
+          Le Mural des Prédictions
         </h1>
         <p className="text-sm text-slate-500 mt-1">
           Découvrez ce que les proches ont parié pour l'arrivée de bébé !
