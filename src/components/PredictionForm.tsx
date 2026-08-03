@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { AlertCircle, Send, User } from 'lucide-react';
+import { AlertCircle, Send } from 'lucide-react';
 import { Prediction, WhoCriesFirst, Gender } from '../types/prediction';
 import { calculatePotentialScore } from '../utils/scoring';
 import { checkIfPredictionExists } from '../lib/supabase';
@@ -163,12 +163,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
         {/* --- CARD 0: Votre Profil (12 cols) --- */}
         <div className="bg-[#F7F4FA] border border-[#E5D9F2] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
           <div className="sm:w-36 bg-[#C5B4E3] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#4A3267] shrink-0">
-            <div className="w-12 h-12 rounded-2xl bg-white/70 border border-white/90 shadow-xs flex items-center justify-center">
-              <User className="w-6 h-6 text-[#4A3267]" />
-            </div>
-            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#4A3267]/90 mt-2">
-              Votre Profil
-            </span>
+            <img src="/assets/profile.png" alt="Votre Profil" className="w-14 h-14 object-contain drop-shadow-xs" />
           </div>
 
           <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center space-y-1.5">
