@@ -66,25 +66,25 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
               className="bg-white border border-stone-200 rounded-3xl p-5 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between space-y-4"
             >
               {/* Card Top Header */}
-              <div className="flex justify-between items-start">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-2xl bg-amber-100/90 border border-amber-300 flex items-center justify-center font-extrabold text-amber-900 text-lg shadow-xs">
+              <div className="flex justify-between items-start gap-3">
+                <div className="flex items-center gap-3 min-w-0 flex-1">
+                  <div className="w-11 h-11 rounded-2xl bg-amber-100/90 border border-amber-300 flex items-center justify-center font-extrabold text-amber-900 text-lg shadow-xs shrink-0">
                     {capitalizeName(item.user_name).charAt(0).toUpperCase()}
                   </div>
-                  <div>
-                    <h3 className="font-bold text-slate-800 text-base">{capitalizeName(item.user_name)}</h3>
-                    <span className="text-[11px] text-slate-400 font-medium">
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{capitalizeName(item.user_name)}</h3>
+                    <span className="text-[11px] text-slate-400 font-medium block mt-0.5">
                       Enregistré récemment
                     </span>
                   </div>
                 </div>
 
-                <span className={`text-xs px-3 py-1 rounded-full font-bold border ${
+                <span className={`text-xs px-3 py-1 rounded-full font-bold border shrink-0 whitespace-nowrap ${
                   item.gender === 'fille'
-                    ? 'bg-rose-50 text-rose-800 border-rose-200'
+                    ? 'bg-pink-50 text-pink-700 border-pink-200'
                     : 'bg-teal-50 text-teal-800 border-teal-200'
                 }`}>
-                  {item.gender === 'fille' ? '🍳 Fille' : '⛵ Garçon'}
+                  {item.gender === 'fille' ? '🌸 Fille' : '🚀 Garçon'}
                 </span>
               </div>
 

@@ -187,8 +187,8 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
               onChange={(e) => setActualData({ ...actualData, gender: e.target.value as any })}
               className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
-              <option value="fille">🍳 Fille</option>
-              <option value="garcon">⛵ Garçon</option>
+              <option value="fille">🌸 Fille</option>
+              <option value="garcon">🚀 Garçon</option>
             </select>
           </div>
 
@@ -348,7 +348,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
                       <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">
                         <span className="text-slate-400 block text-[10px] font-medium">Sexe parié</span>
-                        <span className="font-bold text-slate-800">{rank.gender === 'fille' ? '🍳 Fille' : '⛵ Garçon'}</span>
+                        <span className="font-bold text-slate-800">{rank.gender === 'fille' ? '🌸 Fille' : '🚀 Garçon'}</span>
                         <span className="text-[10px] font-bold text-teal-700 mt-1">+{rank.genderScore} pts</span>
                       </div>
 

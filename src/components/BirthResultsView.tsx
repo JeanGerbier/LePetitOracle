@@ -218,7 +218,7 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
                       )}
                     </div>
                     <p className="text-xs text-slate-500 mt-0.5">
-                      Prénom parié : <span className="font-semibold text-slate-700">{item.first_name_guess || 'Secret'}</span> ({item.gender === 'fille' ? '🍳 Fille' : '⛵ Garçon'})
+                      Prénom parié : <span className="font-semibold text-slate-700">{item.first_name_guess || 'Secret'}</span> ({item.gender === 'fille' ? '🌸 Fille' : '🚀 Garçon'})
                     </p>
                   </div>
                 </div>
