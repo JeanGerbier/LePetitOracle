@@ -15,6 +15,12 @@ const ORACLE_PREFIXES = [
   'Clairvoyant',
   'Initié',
   'Érudit',
+  'Tarologue',
+  'Mentor',
+  'Présage',
+  'Lucide',
+  'Savant',
+  'Cabaliste',
 ];
 
 /**
