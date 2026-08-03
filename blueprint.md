@@ -130,8 +130,8 @@ Le calcul du score réel final s'effectue dans `src/utils/scoring.ts` (`calculat
 ### 5.2 Système de Préfixes Oracles (Algorithme DJB2)
 Afin d'attribuer un préfixe mystique et amusant à chaque proche (ex: *"Astrologue Mamie Chantal"*, *"Visionnaire Tonton Lucas"*), l'application utilise l'algorithme de hachage à haute entropie **DJB2** (`src/utils/scoring.ts`) :
 
-- **Liste de 20 préfixes unisexes (1 mot)** :
-  `Oracle`, `Visionnaire`, `Astrologue`, `Médium`, `Devin`, `Sage`, `Astronome`, `Prophète`, `Guide`, `Augure`, `Interprète`, `Clairvoyant`, `Initié`, `Érudit`, `Tarologue`, `Mentor`, `Présage`, `Lucide`, `Savant`, `Cabaliste`.
+- **Liste de 20 préfixes unisexes/inclusifs (1 mot)** :
+  `Oracle`, `Visionnaire`, `Astrologue`, `Médium`, `Devin(e)`, `Sage`, `Astronome`, `Prophète`, `Guide`, `Augure`, `Interprète`, `Clairvoyant(e)`, `Initié(e)`, `Érudit(e)`, `Tarologue`, `Mentor`, `Présage`, `Lucide`, `Savant(e)`, `Cabaliste`.
 - **Entropie combinée** : Le hachage combine `user_name` + `id` du pronostic pour garantir une répartition homogène et variée sans doublons successifs.
 - **Propriété** : Hachage déterministe (le préfixe attribué à un pronostic reste 100% fixe et identique sur tous les appareils).
 
