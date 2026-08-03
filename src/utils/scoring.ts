@@ -33,16 +33,17 @@ export function capitalizeName(str: string): string {
 }
 
 /**
- * Calcule un préfixe fixe et déterministe basé sur le nom du participant
+ * Calcule un préfixe fixe et déterministe (algorithme DJB2 à haute entropie) basé sur le nom du participant
  */
 export function getPrefixForName(str: string): string {
   if (!str) return 'Oracle';
   const trimmed = str.trim().toLowerCase();
-  let hash = 0;
+  let hash = 5381;
   for (let i = 0; i < trimmed.length; i++) {
-    hash = (hash * 31 + trimmed.charCodeAt(i)) & 0x7fffffff;
+    hash = ((hash << 5) + hash) + trimmed.charCodeAt(i);
   }
-  return ORACLE_PREFIXES[hash % ORACLE_PREFIXES.length];
+  const index = Math.abs(hash) % ORACLE_PREFIXES.length;
+  return ORACLE_PREFIXES[index];
 }
 
 /**
