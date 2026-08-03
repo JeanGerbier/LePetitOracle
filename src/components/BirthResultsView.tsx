@@ -1,19 +1,17 @@
 import React from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
 import { calculateFinalScore, capitalizeName } from '../utils/scoring';
-import { Award, Sparkles, RotateCcw } from 'lucide-react';
+import { Award, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface BirthResultsViewProps {
   predictions: Prediction[];
   actualBirthData: ActualBirthData;
-  onResetSimulation?: () => void;
 }
 
 export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
   predictions,
   actualBirthData,
-  onResetSimulation,
 }) => {
   // Trigger celebratory confetti when the view loads
   React.useEffect(() => {
@@ -78,18 +76,6 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
       
       {/* --- HERO BANNER ANNONCE DE NAISSANCE --- */}
       <div className="bg-gradient-to-br from-[#FDF7EA] via-amber-50 to-[#E3EFE9] border-2 border-amber-300/80 rounded-3xl p-8 sm:p-10 shadow-lg text-center relative overflow-hidden">
-        <div className="absolute top-3 right-3">
-          {onResetSimulation && (
-            <button
-              onClick={onResetSimulation}
-              className="bg-white/80 hover:bg-white text-slate-600 text-xs font-bold px-3 py-1.5 rounded-full border border-stone-200 shadow-xs flex items-center gap-1.5 cursor-pointer transition"
-            >
-              <RotateCcw className="w-3.5 h-3.5" />
-              <span>Quitter la simulation</span>
-            </button>
-          )}
-        </div>
-
         <div className="inline-flex items-center gap-2 bg-amber-200/80 text-amber-950 text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs mb-4">
           <Sparkles className="w-4 h-4 text-amber-700" />
           <span>Bébé est arrivé ! 🎉</span>

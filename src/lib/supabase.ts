@@ -60,6 +60,7 @@ const DEFAULT_ACTUAL_BIRTH_DATA: ActualBirthData = {
   who_cried_first: 'maman',
   weight_grams: 3350,
   height_cm: 50,
+  is_published: false,
 };
 
 const LOCAL_PREDICTIONS_KEY = 'le_petit_oracle_predictions';
@@ -191,6 +192,7 @@ export async function fetchBirthResults(): Promise<ActualBirthData> {
           who_cried_first: data.who_cried_first,
           weight_grams: data.weight_grams,
           height_cm: data.height_cm,
+          is_published: Boolean(data.is_published),
         };
       }
     } catch (err) {
@@ -215,6 +217,8 @@ export async function fetchBirthResults(): Promise<ActualBirthData> {
  * Sauvegarder les résultats officiels de la naissance dans petitoracle_birth_results
  */
 export async function saveBirthResults(results: ActualBirthData): Promise<ActualBirthData> {
+  const dataToSave = { ...results, is_published: true };
+
   if (supabase && isSupabaseConfigured) {
     try {
       const { data, error } = await supabase
@@ -222,25 +226,25 @@ export async function saveBirthResults(results: ActualBirthData): Promise<Actual
         .upsert({
           id: 1,
           updated_at: new Date().toISOString(),
-          first_name: results.first_name,
-          gender: results.gender,
-          who_cried_first: results.who_cried_first,
-          birth_date: results.birth_date,
-          weight_grams: results.weight_grams,
-          height_cm: results.height_cm,
+          first_name: dataToSave.first_name,
+          gender: dataToSave.gender,
+          who_cried_first: dataToSave.who_cried_first,
+          birth_date: dataToSave.birth_date,
+          weight_grams: dataToSave.weight_grams,
+          height_cm: dataToSave.height_cm,
+          is_published: true,
         })
         .select()
         .single();
 
       if (!error && data) {
-        return results;
+        return dataToSave;
       }
     } catch (err) {
       console.warn('Erreur sauvegarde Supabase birth_results:', err);
     }
   }
 
-  // Fallback LocalStorage
-  localStorage.setItem(LOCAL_RESULTS_KEY, JSON.stringify(results));
-  return results;
+  localStorage.setItem(LOCAL_RESULTS_KEY, JSON.stringify(dataToSave));
+  return dataToSave;
 }

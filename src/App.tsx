@@ -7,7 +7,6 @@ import { ParentsAuthModal } from './components/ParentsAuthModal';
 import { SuccessModal } from './components/SuccessModal';
 import { BirthResultsView } from './components/BirthResultsView';
 import { Prediction, ActualBirthData } from './types/prediction';
-import { Sparkles } from 'lucide-react';
 import {
   fetchPredictions,
   savePrediction,
@@ -25,9 +24,9 @@ export default function App() {
     who_cried_first: 'maman',
     weight_grams: 3350,
     height_cm: 50,
+    is_published: false,
   });
 
-  const [isSimulationMode, setIsSimulationMode] = useState(false);
   const [showParentsAuthModal, setShowParentsAuthModal] = useState(false);
   const [isParentsAuthenticated, setIsParentsAuthenticated] = useState(() => {
     return sessionStorage.getItem('parents_authenticated') === 'true';
@@ -56,7 +55,6 @@ export default function App() {
   }, []);
 
   const handleTabChange = (targetTab: 'form' | 'leaderboard' | 'parents') => {
-    setIsSimulationMode(false);
     if (targetTab === 'parents' && !isParentsAuthenticated) {
       setShowParentsAuthModal(true);
       return;
@@ -84,9 +82,9 @@ export default function App() {
   };
 
   const handleSaveActualBirthData = async (newData: ActualBirthData) => {
-    const saved = await saveBirthResults(newData);
+    const dataToSave: ActualBirthData = { ...newData, is_published: true };
+    const saved = await saveBirthResults(dataToSave);
     setActualBirthData(saved);
-    setIsSimulationMode(true);
   };
 
   return (
@@ -108,11 +106,10 @@ export default function App() {
               <div className="w-10 h-10 border-4 border-teal-600 border-t-transparent rounded-full animate-spin"></div>
               <p className="text-sm font-medium">Chargement des pronostics...</p>
             </div>
-          ) : isSimulationMode ? (
+          ) : actualBirthData.is_published && activeTab !== 'parents' ? (
             <BirthResultsView
               predictions={predictionsList}
               actualBirthData={actualBirthData}
-              onResetSimulation={() => setIsSimulationMode(false)}
             />
           ) : (
             <>
@@ -134,22 +131,6 @@ export default function App() {
                   onSaveActualData={handleSaveActualBirthData}
                   onLogout={handleParentsLogout}
                 />
-              )}
-
-              {/* Simulation Banner Switcher (en bas de page sur l'onglet Pronostics et Mode Parents) */}
-              {(activeTab === 'form' || activeTab === 'parents') && (
-                <div className="mt-12 bg-amber-100/70 border border-amber-200/80 rounded-2xl text-center py-3.5 px-6 text-xs sm:text-sm font-bold text-amber-900 flex flex-col sm:flex-row items-center justify-center gap-3 shadow-xs">
-                  <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-amber-700" />
-                    <span>Curieux du résultat final ?</span>
-                  </div>
-                  <button
-                    onClick={() => setIsSimulationMode(true)}
-                    className="bg-amber-200 hover:bg-amber-300 text-amber-950 px-4 py-1.5 rounded-full border border-amber-300/90 shadow-2xs cursor-pointer transition font-bold"
-                  >
-                    <span>Simuler le rendu du Jour J</span>
-                  </button>
-                </div>
               )}
             </>
           )}

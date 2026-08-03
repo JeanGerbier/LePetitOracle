@@ -22,6 +22,7 @@ export interface ActualBirthData {
   who_cried_first: WhoCriesFirst;
   weight_grams: number;
   height_cm: number;
+  is_published?: boolean;
 }
 
 export interface ScoreBreakdown {
