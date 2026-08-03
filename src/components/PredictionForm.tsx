@@ -196,9 +196,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
             <div className="md:col-span-8 bg-[#D7E7EE]/80 border border-[#B0CAD6] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
               {/* Encart coloré gauche - Largeur fixe identique sm:w-40 */}
               <div className="sm:w-40 bg-[#A7CAD8] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#1C3A47] shrink-0">
-                <div className="w-14 h-14 rounded-2xl bg-white/40 border border-white/60 flex items-center justify-center shadow-xs backdrop-blur-xs mb-1">
-                  <img src="/assets/date.png" alt="L'Arrivée" className="w-9 h-9 object-contain" />
-                </div>
+                <img src="/assets/date.png" alt="L'Arrivée" className="w-14 h-14 object-contain drop-shadow-xs mb-1" />
                 <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1C3A47]/90 mt-1">
                   L'Arrivée
                 </span>
@@ -238,7 +236,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                       />
                       <div className="flex flex-col text-[9px] text-slate-500 border-l border-stone-200 pl-1">
                         <button type="button" onClick={handleIncrementHour} className="hover:text-teal-700 font-bold">▲</button>
-                        <button type="button" onClick={handleDecrementHour} className="hover:text-teal-700 font-bold">▼</button>
+                        <button type="button" onClick={handleDecrementHour} className="hover:text-[#2D586C] font-bold">▼</button>
                       </div>
                     </div>
                   </div>
@@ -332,9 +330,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <div className="bg-[#EEF7F5]/80 border border-[#CDE5E0] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             {/* Encart coloré gauche - Largeur fixe identique sm:w-40 */}
             <div className="sm:w-40 bg-[#79ADA5] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
-              <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-xs shadow-xs p-2">
-                <img src="/assets/bebe.png" alt="Bébé" className="w-full h-full object-contain" />
-              </div>
+              <img src="/assets/bebe.png" alt="Bébé" className="w-16 h-16 object-contain drop-shadow-xs" />
             </div>
 
             {/* Zone de formulaire droite */}
@@ -359,9 +355,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                         : 'bg-white/80 border-stone-200 hover:bg-white text-slate-700'
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-full bg-white shadow-xs flex items-center justify-center p-1.5 border border-stone-100">
-                      <img src={option.icon} alt={option.label} className="w-full h-full object-contain" />
-                    </div>
+                    <img src={option.icon} alt={option.label} className="w-10 h-10 object-contain drop-shadow-2xs" />
                     <span className="text-xs font-bold text-slate-800">
                       {option.label}
                     </span>
@@ -375,9 +369,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <div className="bg-[#FAF0EF] border border-[#F2D7D4] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             {/* Encart coloré gauche - Largeur fixe identique sm:w-40 */}
             <div className="sm:w-40 bg-[#E2A9A3] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
-              <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-xs shadow-xs p-2">
-                <img src="/assets/taille-poids.png" alt="Poids et Taille" className="w-full h-full object-contain" />
-              </div>
+              <img src="/assets/taille-poids.png" alt="Poids et Taille" className="w-16 h-16 object-contain drop-shadow-xs" />
             </div>
 
             {/* Sliders droite */}
