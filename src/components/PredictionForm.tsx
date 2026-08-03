@@ -168,7 +168,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
           <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center space-y-1.5">
             <label className="font-bold text-slate-800 text-base block">
-              L'Auteur de la Prophétie <span className="text-rose-500">(obligatoire)</span>
+              L'Auteur de la Prophétie <span className="font-normal text-slate-500 text-sm">(obligatoire)</span>
             </label>
             <input
               type="text"
