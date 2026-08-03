@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'text-slate-600 hover:text-slate-900 hover:bg-stone-100/80'
               }`}
             >
-              Faire un Pronostic
+              Faire un pronostic
             </button>
 
             <button
@@ -90,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
                   : 'text-amber-800/90 hover:text-amber-950 hover:bg-amber-50/70'
               }`}
             >
-              <span>Mode Parents</span>
+              <span>Mode parents</span>
               {isParentsAuthenticated ? (
                 <Crown className="w-4 h-4 text-amber-600 inline-block" />
               ) : (

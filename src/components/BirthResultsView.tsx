@@ -156,7 +156,7 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="bg-amber-100 text-amber-950 font-extrabold text-[11px] px-3 py-0.5 rounded-full border border-amber-300 uppercase tracking-wider">
-                    🏆 Le Grand Oracle Officiel
+                    🏆 Le Grand Oracle de la Tribu
                   </span>
                 </div>
                 <h2 className="text-3xl font-serif font-black text-slate-900">
@@ -185,7 +185,7 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
         <div className="flex items-center gap-2">
           <Award className="w-5 h-5 text-teal-700" />
           <h3 className="text-xl font-serif font-bold text-slate-800">
-            Le Classement Final de la Tribu ({rankedPredictions.length})
+            Le classement final de la tribu ({rankedPredictions.length})
           </h3>
         </div>
 

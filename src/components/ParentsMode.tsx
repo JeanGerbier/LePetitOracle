@@ -137,14 +137,14 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
         <div>
           <div className="flex items-center gap-2">
             <span className="bg-amber-200/90 text-amber-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-flex items-center gap-1.5 shadow-xs">
-              <Crown className="w-3.5 h-3.5 text-amber-700" /> Espace Réservé aux Parents 👑
+              <Crown className="w-3.5 h-3.5 text-amber-700" /> Le Sanctuaire des Parents 👑
             </span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-3">
-            Renseigner les Vraies Données de la Naissance
+            Renseigner les vraies données de la naissance
           </h1>
           <p className="text-xs sm:text-sm text-amber-900/80 mt-1 max-w-2xl leading-relaxed">
-            Saisissez les informations officielles du jour J pour calculer instantanément les scores exacts et désigner le Grand Oracle !
+            Saisissez la vérité officielle pour couronner le Grand Vénérable Oracle !
           </p>
         </div>
 
@@ -265,7 +265,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                 ? 'Sauvegarde...'
                 : savedSuccess
                 ? 'Résultats enregistrés et publiés ! 🎉'
-                : 'Publier les résultats officiels'}
+                : "Révéler la Vérité & Couronner l'Oracle"}
             </span>
           </button>
         </div>
@@ -275,7 +275,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
       <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-4">
           <h2 className="font-bold text-slate-800 text-lg sm:text-xl">
-            Classement & Grand Gagnant Calculé
+            Classement & grand gagnant calculé
           </h2>
           <span className="text-xs text-teal-800 font-semibold bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
             ⚡ Recalculé automatiquement
@@ -312,7 +312,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                         <h4 className="font-bold text-slate-800 text-base">{rank.user_name}</h4>
                         {isWinner && (
                           <span className="bg-amber-200 text-amber-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1">
-                            🏆 Grand Oracle
+                            🏆 Le Grand Oracle de la Tribu
                           </span>
                         )}
                       </div>

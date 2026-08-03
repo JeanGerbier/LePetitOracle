@@ -131,10 +131,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
       {/* Title Header Bar */}
       <div>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
-          Le Formulaire des Pronostics
+          Le formulaire des pronostics
         </h1>
         <p className="text-sm text-slate-500 mt-1">
-          Remplissez vos intuitions et découvrez votre score potentiel !
+          Écoutez votre intuition, consultez les astres et découvrez votre pouvoir d'oracle !
         </p>
       </div>
 
@@ -160,7 +160,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
           <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center space-y-1.5">
             <label className="font-bold text-slate-800 text-base block">
-              L'Auteur de la Prophétie <span className="font-normal text-slate-500 text-sm">(obligatoire)</span>
+              L'auteur de la prophétie <span className="font-normal text-slate-500 text-sm">(obligatoire)</span>
             </label>
             <input
               type="text"
@@ -192,7 +192,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
             {/* Formulaire droite */}
             <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between">
               <span className="font-bold text-slate-800 text-base block mb-1">
-                La Date et l'Heure
+                La date et l'heure
               </span>
 
               <div className="flex-1 flex flex-col justify-center space-y-1.5">
@@ -266,7 +266,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           {/* Card 2: Le Sexe (3 cols) */}
           <div className="md:col-span-3 bg-[#FAF5EC] border border-[#EADFCF] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col justify-between hover:shadow-sm transition">
             <span className="font-bold text-slate-800 text-base mb-2 block">
-              Le Sexe
+              Le sexe
             </span>
 
             <div className="grid grid-cols-2 gap-2.5">
@@ -299,7 +299,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           {/* Card 3: Le Prénom (3 cols) */}
           <div className="md:col-span-3 bg-[#E8F3F0] border border-[#D0E5E0] p-4 sm:p-5 rounded-3xl shadow-xs flex flex-col hover:shadow-sm transition">
             <span className="font-bold text-slate-800 text-base mb-1 block">
-              Le Prénom
+              Le prénom
             </span>
 
             <div className="flex-1 flex flex-col justify-center space-y-2">
@@ -333,8 +333,8 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { id: 'maman', label: 'La Maman', icon: '/assets/maman.png' },
-                { id: 'papa', label: 'Le Papa', icon: '/assets/papa.png' },
+                { id: 'maman', label: 'La maman', icon: '/assets/maman.png' },
+                { id: 'papa', label: 'Le papa', icon: '/assets/papa.png' },
                 { id: 'les_deux', label: 'Les deux', icon: '/assets/papa-maman.png' }
               ].map((option) => (
                 <button
@@ -470,7 +470,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <div className="flex items-center gap-4 text-slate-800">
             <img src="/assets/coupe.png" alt="Score Potentiel" className="w-12 h-12 sm:w-14 sm:h-14 object-contain drop-shadow-xs shrink-0" />
             <div>
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Score Potentiel Estimé</span>
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Pouvoir Divinatoire potentiel</span>
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-black text-slate-900">+{scoreBreakdown.totalPossible} pts</span>
                 <span className="text-xs text-slate-400 font-medium">/ 300 pts max</span>
@@ -483,7 +483,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
             disabled={isSubmitting}
             className="w-full sm:w-auto bg-[#528F79] hover:bg-[#437A66] text-white font-bold py-4 px-8 rounded-2xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-3 text-base cursor-pointer disabled:opacity-50 active:scale-98"
           >
-            <span>Soumettre mon Pronostic</span>
+            <span>Soumettre mon pronostic</span>
             <Send className="w-5 h-5" />
           </button>
         </div>

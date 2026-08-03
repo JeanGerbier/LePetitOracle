@@ -14,9 +14,9 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   const formatWhoCries = (val: string) => {
     switch (val) {
       case 'maman':
-        return 'La Maman';
+        return 'La maman';
       case 'papa':
-        return 'Le Papa';
+        return 'Le papa';
       case 'les_deux':
         return 'Les deux';
       default:
@@ -37,10 +37,10 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   };
 
   const formatRelativeTime = (isoString?: string) => {
-    if (!isoString) return 'Enregistré récemment';
+    if (!isoString) return 'Prophétisé récemment';
     try {
       const createdDate = new Date(isoString);
-      if (isNaN(createdDate.getTime())) return 'Enregistré récemment';
+      if (isNaN(createdDate.getTime())) return 'Prophétisé récemment';
 
       const now = new Date();
       const diffMs = now.getTime() - createdDate.getTime();
@@ -48,15 +48,15 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
       const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
       const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-      if (diffMinutes < 1) return "Enregistré à l'instant";
-      if (diffMinutes < 60) return `Enregistré il y a ${diffMinutes} min`;
-      if (diffHours < 24) return `Enregistré il y a ${diffHours}h`;
-      if (diffDays === 1) return 'Enregistré hier';
-      if (diffDays < 7) return `Enregistré il y a ${diffDays}j`;
+      if (diffMinutes < 1) return "Prophétisé à l'instant";
+      if (diffMinutes < 60) return `Prophétisé il y a ${diffMinutes} min`;
+      if (diffHours < 24) return `Prophétisé il y a ${diffHours}h`;
+      if (diffDays === 1) return 'Prophétisé hier';
+      if (diffDays < 7) return `Prophétisé il y a ${diffDays}j`;
 
-      return `Enregistré le ${createdDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}`;
+      return `Prophétisé le ${createdDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}`;
     } catch {
-      return 'Enregistré récemment';
+      return 'Prophétisé récemment';
     }
   };
 
@@ -66,10 +66,10 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
       {/* Top Title Header Bar */}
       <div>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
-          Le Mural des Prédictions
+          Le mural des prédictions
         </h1>
         <p className="text-sm text-slate-500 mt-1">
-          Découvrez ce que les proches ont parié pour l'arrivée de bébé !
+          Parcourez les prédictions et présages scellés par toute la tribu !
         </p>
       </div>
 
@@ -115,11 +115,11 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
               {/* Data Grid Summary */}
               <div className="grid grid-cols-2 gap-3 bg-stone-50/80 border border-stone-200/50 p-3.5 rounded-2xl text-xs">
                 <div>
-                  <span className="text-slate-400 block mb-0.5 font-medium">Date & Heure</span>
+                  <span className="text-slate-400 block mb-0.5 font-medium">Date & heure</span>
                   <span className="font-bold text-slate-800">{formatDateString(item.birth_date)}</span>
                 </div>
                 <div>
-                  <span className="text-slate-400 block mb-0.5 font-medium">Prénom Deviné</span>
+                  <span className="text-slate-400 block mb-0.5 font-medium">Prénom deviné</span>
                   <span className="font-bold text-slate-800">{item.first_name_guess || 'Secret !'}</span>
                 </div>
                 <div>
