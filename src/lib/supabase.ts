@@ -14,45 +14,6 @@ export const supabase = (supabaseUrl && supabaseAnonKey)
   ? createClient(supabaseUrl, supabaseAnonKey)
   : null;
 
-const INITIAL_DEMO_PREDICTIONS: Prediction[] = [
-  {
-    id: '1',
-    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    user_name: 'Mamie Chantal',
-    user_email: 'chantal@famille.fr',
-    gender: 'fille',
-    birth_date: '2026-08-14T06:15:00.000Z',
-    first_name_guess: 'Elena',
-    who_cries_first: 'maman',
-    weight_grams: 3400,
-    height_cm: 51,
-  },
-  {
-    id: '2',
-    created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-    user_name: 'Tonton Lucas',
-    user_email: 'lucas@famille.fr',
-    gender: 'garcon',
-    birth_date: '2026-08-18T14:30:00.000Z',
-    first_name_guess: 'Léo',
-    who_cries_first: 'papa',
-    weight_grams: 3650,
-    height_cm: 52,
-  },
-  {
-    id: '3',
-    created_at: new Date().toISOString(),
-    user_name: 'Cousin Julien',
-    user_email: 'julien@famille.fr',
-    gender: 'fille',
-    birth_date: '2026-08-15T11:00:00.000Z',
-    first_name_guess: 'Sofia',
-    who_cries_first: 'maman',
-    weight_grams: 3200,
-    height_cm: 49,
-  },
-];
-
 const DEFAULT_ACTUAL_BIRTH_DATA: ActualBirthData = {
   gender: 'fille',
   birth_date: '2026-08-15T02:15:00.000Z',
@@ -95,8 +56,7 @@ export async function fetchPredictions(): Promise<Prediction[]> {
     }
   }
 
-  localStorage.setItem(LOCAL_PREDICTIONS_KEY, JSON.stringify(INITIAL_DEMO_PREDICTIONS));
-  return INITIAL_DEMO_PREDICTIONS;
+  return [];
 }
 
 /**
