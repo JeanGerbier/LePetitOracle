@@ -258,7 +258,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 </div>
 
                 <p className="text-[10px] text-[#2D586C] font-semibold italic">
-                  Sortie du four : 21 sept.
+                  Sortie du four prévue : 21 septembre
                 </p>
               </div>
             </div>
