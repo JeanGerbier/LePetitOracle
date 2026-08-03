@@ -411,8 +411,8 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           </div>
 
           {/* Card 6: Taille (cm) (6 cols) */}
-          <div className="md:col-span-6 bg-[#EBF4F6] border border-[#CBDDE2] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
-            <div className="sm:w-36 bg-[#82AFA5] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
+          <div className="md:col-span-6 bg-[#FAF0EF] border border-[#F2D7D4] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
+            <div className="sm:w-36 bg-[#E2A9A3] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
               <img src="/assets/taille.png" alt="Taille" className="w-12 h-12 object-contain drop-shadow-xs" />
             </div>
 
@@ -421,7 +421,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 <label className="font-bold text-slate-800 text-base">
                   Taille (cm)
                 </label>
-                <div className="flex items-center gap-1.5 bg-white/90 border border-[#CBDDE2] px-3 py-1 rounded-xl shadow-xs">
+                <div className="flex items-center gap-1.5 bg-white/90 border border-[#F2D7D4] px-3 py-1 rounded-xl shadow-xs">
                   <input
                     type="number"
                     step="1"
@@ -447,11 +447,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setHeightCm(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-teal-600 cursor-pointer h-2 bg-teal-200/60 rounded-lg"
+                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>42 cm</span>
-                <span className="text-teal-800 font-semibold">50 cm (Moyenne)</span>
+                <span className="text-rose-800 font-semibold">50 cm (Moyenne)</span>
                 <span>58 cm</span>
               </div>
             </div>
