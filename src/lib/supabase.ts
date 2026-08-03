@@ -27,6 +27,17 @@ const DEFAULT_ACTUAL_BIRTH_DATA: ActualBirthData = {
 const LOCAL_PREDICTIONS_KEY = 'le_petit_oracle_predictions';
 const LOCAL_RESULTS_KEY = 'le_petit_oracle_actual_birth_results';
 
+const DEMO_NAMES = ['Mamie Chantal', 'Tonton Lucas', 'Cousin Julien'];
+
+const filterDemo = (list: Prediction[]) => {
+  return list.filter(p => 
+    p.id !== '1' && 
+    p.id !== '2' && 
+    p.id !== '3' && 
+    !DEMO_NAMES.includes(p.user_name)
+  );
+};
+
 /**
  * Récupérer la liste des pronostics depuis petitoracle_predictions
  */
@@ -39,7 +50,7 @@ export async function fetchPredictions(): Promise<Prediction[]> {
         .order('created_at', { ascending: false });
 
       if (!error && data) {
-        return data as Prediction[];
+        return filterDemo(data as Prediction[]);
       }
     } catch (err) {
       console.warn('Erreur Supabase predictions:', err);
@@ -50,7 +61,8 @@ export async function fetchPredictions(): Promise<Prediction[]> {
   const cached = localStorage.getItem(LOCAL_PREDICTIONS_KEY);
   if (cached) {
     try {
-      return JSON.parse(cached);
+      const parsed = JSON.parse(cached);
+      return filterDemo(parsed);
     } catch {
       // Ignorer erreur parse
     }
