@@ -36,6 +36,30 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
     }
   };
 
+  const formatRelativeTime = (isoString?: string) => {
+    if (!isoString) return 'Enregistré récemment';
+    try {
+      const createdDate = new Date(isoString);
+      if (isNaN(createdDate.getTime())) return 'Enregistré récemment';
+
+      const now = new Date();
+      const diffMs = now.getTime() - createdDate.getTime();
+      const diffMinutes = Math.floor(diffMs / (1000 * 60));
+      const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      if (diffMinutes < 1) return "Enregistré à l'instant";
+      if (diffMinutes < 60) return `Enregistré il y a ${diffMinutes} min`;
+      if (diffHours < 24) return `Enregistré il y a ${diffHours}h`;
+      if (diffDays === 1) return 'Enregistré hier';
+      if (diffDays < 7) return `Enregistré il y a ${diffDays}j`;
+
+      return `Enregistré le ${createdDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}`;
+    } catch {
+      return 'Enregistré récemment';
+    }
+  };
+
   return (
     <div className="animate-fade-in max-w-5xl mx-auto space-y-6">
       
@@ -74,7 +98,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
                   <div className="min-w-0 flex-1">
                     <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{capitalizeName(item.user_name)}</h3>
                     <span className="text-[11px] text-slate-400 font-medium block mt-0.5">
-                      Enregistré récemment
+                      {formatRelativeTime(item.created_at)}
                     </span>
                   </div>
                 </div>
