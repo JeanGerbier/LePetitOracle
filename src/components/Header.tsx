@@ -17,14 +17,15 @@ export const Header: React.FC<HeaderProps> = ({
   const [copied, setCopied] = useState(false);
 
   const handleShare = () => {
+    const shareUrl = 'https://le-petit-oracle.vercel.app/';
     if (navigator.share) {
       navigator.share({
         title: 'Le Petit Oracle - Pronostics de Naissance',
         text: 'Fais ton pronostic sur la naissance du bébé (date, sexe, prénom, poids et taille) ! 👶✨',
-        url: window.location.href,
+        url: shareUrl,
       }).catch(() => {});
     } else {
-      navigator.clipboard.writeText(window.location.href);
+      navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     }
@@ -91,13 +92,13 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </nav>
 
-          {/* Share Button */}
+          {/* Share Button (Même hauteur que le nav toggle 50px) */}
           <button
             onClick={handleShare}
-            className="bg-white/80 hover:bg-white text-slate-700 font-semibold px-3.5 py-2 rounded-full border border-stone-200/90 shadow-sm text-xs flex items-center gap-1.5 transition cursor-pointer active:scale-95"
+            className="h-[50px] bg-white/80 hover:bg-white text-slate-700 font-semibold px-5 rounded-full border border-stone-200/90 shadow-sm text-sm flex items-center gap-2 transition cursor-pointer active:scale-95"
             title="Partager à la famille"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Share2 className="w-3.5 h-3.5 text-slate-600" />}
+            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Share2 className="w-4 h-4 text-slate-600" />}
             <span>{copied ? 'Lien copié !' : 'Partager'}</span>
           </button>
         </div>
