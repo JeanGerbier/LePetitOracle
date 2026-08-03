@@ -192,10 +192,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <div className="md:col-span-6 bg-[#D7E7EE]/80 border border-[#B0CAD6] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             {/* Encart coloré gauche - Largeur fixe identique sm:w-36 */}
             <div className="sm:w-36 bg-[#A7CAD8] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#1C3A47] shrink-0">
-              <img src="/assets/date.png" alt="L'Arrivée" className="w-12 h-12 object-contain drop-shadow-xs mb-1" />
-              <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1C3A47]/90 mt-1">
-                L'Arrivée
-              </span>
+              <img src="/assets/date.png" alt="L'Arrivée" className="w-12 h-12 object-contain drop-shadow-xs" />
             </div>
 
             {/* Formulaire droite */}
