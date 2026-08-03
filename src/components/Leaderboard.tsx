@@ -96,7 +96,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
                     {capitalizeName(item.user_name).charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{formatOracleName(item.user_name)}</h3>
+                    <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{formatOracleName(item.user_name, item.id)}</h3>
                     <span className="text-[11px] text-slate-400 font-medium block mt-0.5">
                       {formatRelativeTime(item.created_at)}
                     </span>

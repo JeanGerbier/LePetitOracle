@@ -33,14 +33,14 @@ export function capitalizeName(str: string): string {
 }
 
 /**
- * Calcule un préfixe fixe et déterministe (algorithme DJB2 à haute entropie) basé sur le nom du participant
+ * Calcule un préfixe fixe et déterministe (algorithme DJB2) basé sur le nom et l'ID du pronostic
  */
-export function getPrefixForName(str: string): string {
+export function getPrefixForName(str: string, id?: string): string {
   if (!str) return 'Oracle';
-  const trimmed = str.trim().toLowerCase();
+  const seed = (id ? `${str}_${id}` : str).trim().toLowerCase();
   let hash = 5381;
-  for (let i = 0; i < trimmed.length; i++) {
-    hash = ((hash << 5) + hash) + trimmed.charCodeAt(i);
+  for (let i = 0; i < seed.length; i++) {
+    hash = ((hash << 5) + hash) + seed.charCodeAt(i);
   }
   const index = Math.abs(hash) % ORACLE_PREFIXES.length;
   return ORACLE_PREFIXES[index];
@@ -49,9 +49,9 @@ export function getPrefixForName(str: string): string {
 /**
  * Retourne le prénom avec son préfixe (ex: "Astrologue Mamie Chantal")
  */
-export function formatOracleName(str: string): string {
+export function formatOracleName(str: string, id?: string): string {
   if (!str) return '';
-  const prefix = getPrefixForName(str);
+  const prefix = getPrefixForName(str, id);
   const formattedName = capitalizeName(str);
   return `${prefix} ${formattedName}`;
 }
