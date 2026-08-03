@@ -249,7 +249,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   </div>
                 </div>
 
-                <p className="text-[10px] text-[#2D586C] font-semibold italic">
+                <p className="text-[10px] text-[#2D586C] font-semibold italic pt-1">
                   Sortie du four prévue : 21 septembre
                 </p>
               </div>
@@ -272,7 +272,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/fille.png" alt="Fille" className="w-12 h-12 object-contain" />
+                <img src="/assets/fille.png" alt="Fille" className="w-11 h-11 object-contain" />
                 <span className="text-xs font-bold">Fille</span>
               </button>
 
@@ -285,7 +285,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/garcon.png" alt="Garçon" className="w-12 h-12 object-contain" />
+                <img src="/assets/garcon.png" alt="Garçon" className="w-11 h-11 object-contain scale-105" />
                 <span className="text-xs font-bold">Garçon</span>
               </button>
             </div>
