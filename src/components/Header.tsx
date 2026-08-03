@@ -16,18 +16,25 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
 
-  const handleShare = () => {
+  const handleShare = async () => {
     const shareUrl = 'https://le-petit-oracle.vercel.app/';
     if (navigator.share) {
-      navigator.share({
-        title: 'Le Petit Oracle - Pronostics de Naissance',
-        text: 'Fais ton pronostic sur la naissance du bébé (date, sexe, prénom, poids et taille) ! 👶✨',
-        url: shareUrl,
-      }).catch(() => {});
+      try {
+        await navigator.share({
+          title: 'Le Petit Oracle',
+          url: shareUrl,
+        });
+      } catch {
+        // Ignorer si l'utilisateur annule le menu de partage
+      }
     } else {
-      navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      } catch {
+        // Fallback
+      }
     }
   };
 
