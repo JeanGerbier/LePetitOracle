@@ -135,7 +135,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
   return (
     <div className="animate-fade-in max-w-6xl mx-auto space-y-6">
-      
+
       {/* Title Header Bar */}
       <div>
         <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
@@ -186,7 +186,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
             </p>
           </div>
         </div>
-        
+
         {/* --- ROW 1: Date/Heure (6 cols) | Le Sexe (3 cols) | Le Prénom (3 cols) --- */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
 
@@ -273,11 +273,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => setGender('fille')}
-                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                  gender === 'fille'
+                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${gender === 'fille'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
-                }`}
+                  }`}
               >
                 <img src="/assets/fille.png" alt="Fille" className="w-11 h-11 object-contain" />
                 <span className="text-xs font-bold">Fille</span>
@@ -286,11 +285,10 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => setGender('garcon')}
-                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
-                  gender === 'garcon'
+                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${gender === 'garcon'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
-                }`}
+                  }`}
               >
                 <img src="/assets/garcon.png" alt="Garçon" className="w-11 h-11 object-contain scale-105" />
                 <span className="text-xs font-bold">Garçon</span>
@@ -343,16 +341,15 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   key={option.id}
                   type="button"
                   onClick={() => setWhoCriesFirst(option.id as WhoCriesFirst)}
-                  className={`p-3.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-2 text-center h-28 cursor-pointer ${
-                    whoCriesFirst === option.id
+                  className={`p-3.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-2 text-center h-28 cursor-pointer ${whoCriesFirst === option.id
                       ? 'bg-[#FDF7EA] border-amber-400 ring-2 ring-amber-300 shadow-md transform -translate-y-0.5'
                       : 'bg-white/80 border-stone-200 hover:bg-white text-slate-700'
-                  }`}
+                    }`}
                 >
-                  <img 
-                    src={option.icon} 
-                    alt={option.label} 
-                    className={`${option.id === 'les_deux' ? 'w-16 h-14 scale-115' : 'w-12 h-12'} object-contain drop-shadow-2xs`} 
+                  <img
+                    src={option.icon}
+                    alt={option.label}
+                    className={`${option.id === 'les_deux' ? 'w-16 h-14 scale-115' : 'w-12 h-12'} object-contain drop-shadow-2xs`}
                   />
                   <span className="text-xs font-bold text-slate-800">
                     {option.label}
@@ -365,7 +362,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
         {/* --- ROW 3: Poids (g) & Taille (cm) séparés en 2 cartes (6 cols + 6 cols) --- */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
-          
+
           {/* Card 5: Poids (g) (6 cols) */}
           <div className="md:col-span-6 bg-[#FAF0EF] border border-[#F2D7D4] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             <div className="sm:w-36 bg-[#E2A9A3] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
@@ -403,11 +400,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setWeightGrams(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-[#D68C85] cursor-pointer h-2 bg-[#F2D7D4] rounded-lg"
+                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>2200g</span>
-                <span className="text-[#AA635C] font-semibold">3500g (Moyenne)</span>
+                <span className="text-rose-800 font-semibold">3500g (Moyenne)</span>
                 <span>4800g</span>
               </div>
             </div>
@@ -450,11 +447,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setHeightCm(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-[#D68C85] cursor-pointer h-2 bg-[#F2D7D4] rounded-lg"
+                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>42 cm</span>
-                <span className="text-[#AA635C] font-semibold">50 cm (Moyenne)</span>
+                <span className="text-rose-800 font-semibold">50 cm (Moyenne)</span>
                 <span>58 cm</span>
               </div>
             </div>
