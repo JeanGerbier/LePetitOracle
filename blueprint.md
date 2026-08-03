@@ -35,7 +35,7 @@ Application web responsive (mobile & desktop) festive et ludique permettant à l
 
 ```
 LePetitOracle/
-├── .env.local                     ← Variables d'environnement locales (Supabase, Auth Parents)
+├── .env                           ← Variables d'environnement locales (Supabase, Auth Parents)
 ├── .gitignore
 ├── index.html                     ← Point d'entrée SPA (meta tags, polices Google Fonts)
 ├── package.json
@@ -185,7 +185,7 @@ CREATE TABLE public.birth_results (
 
 ## 7. Variables d'Environnement
 
-Variables requises dans `.env.local` et sur Vercel :
+Variables requises dans `.env` et sur Vercel :
 
 ```bash
 # Supabase Cloud Configuration
