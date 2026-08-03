@@ -152,22 +152,17 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <label className="text-[10px] font-extrabold uppercase tracking-wider text-teal-800">
             Votre Prénom & Nom <span className="text-rose-500">*</span>
           </label>
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-amber-200 border border-amber-300 flex items-center justify-center text-amber-900 font-bold text-xs shrink-0">
-              ✍️
-            </div>
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => {
-                setUserName(e.target.value);
-                setDuplicateError('');
-              }}
-              className="text-sm font-bold text-slate-800 bg-transparent border-none focus:outline-none focus:ring-0 w-full sm:w-48 placeholder:text-slate-400 placeholder:font-normal"
-              placeholder="ex: Mamie Chantal"
-              required
-            />
-          </div>
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+              setDuplicateError('');
+            }}
+            className="text-sm font-bold text-slate-800 bg-transparent border-none focus:outline-none focus:ring-0 w-full sm:w-48 placeholder:text-slate-400 placeholder:font-normal"
+            placeholder="ex: Mamie Chantal"
+            required
+          />
         </div>
       </div>
 
