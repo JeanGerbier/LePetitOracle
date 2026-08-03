@@ -1,7 +1,7 @@
 import React from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
 import { calculateFinalScore } from '../utils/scoring';
-import { Trophy, Award, Sparkles, RotateCcw } from 'lucide-react';
+import { Award, Sparkles, RotateCcw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface BirthResultsViewProps {
@@ -163,8 +163,8 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
         <div className="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 p-1 rounded-3xl shadow-md">
           <div className="bg-white rounded-[22px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-5">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-100 border-2 border-amber-400 flex items-center justify-center text-amber-900 shadow-sm shrink-0">
-                <Trophy className="w-9 h-9 sm:w-10 sm:h-10 text-amber-600 animate-bounce" />
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-100/80 border-2 border-amber-400/80 flex items-center justify-center shadow-sm shrink-0 p-2">
+                <img src="/assets/coupe.png" alt="Le Grand Oracle" className="w-full h-full object-contain animate-bounce" />
               </div>
 
               <div>

@@ -463,9 +463,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
         {/* --- BANDEAU BAS DE PAGE : RECAP SCORE & BOUTON D'ENVOI --- */}
         <div className="bg-white/95 backdrop-blur-md border-2 border-teal-600/30 rounded-3xl p-5 sm:p-6 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
           <div className="flex items-center gap-4 text-slate-800">
-            <div className="w-12 h-12 rounded-2xl bg-[#E3EFE9] border border-[#BDE0D0] flex items-center justify-center text-xl shrink-0 shadow-xs">
-              🏆
-            </div>
+            <img src="/assets/coupe.png" alt="Score Potentiel" className="w-16 h-16 sm:w-20 sm:h-20 object-contain drop-shadow-xs shrink-0" />
             <div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Score Potentiel Estimé</span>
               <div className="flex items-baseline gap-2">
