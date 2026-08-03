@@ -161,12 +161,12 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
 
         {/* --- CARD 0: Votre Profil (12 cols) --- */}
-        <div className="bg-[#FAF2E8]/90 border border-[#EEDCC8] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
-          <div className="sm:w-36 bg-[#F3D7B7] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#5A3E2B] shrink-0">
+        <div className="bg-[#F3F6F8] border border-[#DCE4E8] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
+          <div className="sm:w-36 bg-[#BCCCD4] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#2C3E47] shrink-0">
             <div className="w-12 h-12 rounded-full bg-white/60 border border-white/80 flex items-center justify-center text-2xl shadow-xs">
               👋
             </div>
-            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#5A3E2B]/90 mt-1">
+            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#2C3E47]/90 mt-1">
               Votre Profil
             </span>
           </div>
@@ -182,11 +182,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 setUserName(e.target.value);
                 setDuplicateError('');
               }}
-              className="w-full bg-white/90 border border-[#E5CCA8] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-xs placeholder:font-normal placeholder:text-slate-400"
+              className="w-full bg-white/90 border border-[#BCCCD4] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 shadow-xs placeholder:font-normal placeholder:text-slate-400"
               placeholder="ex: Mamie Chantal"
               required
             />
-            <p className="text-[11px] text-amber-900/70 italic font-medium">
+            <p className="text-[11px] text-slate-500 italic font-medium">
               Permet d'enregistrer votre pronostic à votre nom sur le classement de la tribu !
             </p>
           </div>
