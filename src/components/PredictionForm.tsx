@@ -403,11 +403,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setWeightGrams(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
+                className="w-full accent-[#D68C85] cursor-pointer h-2 bg-[#F2D7D4] rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>2200g</span>
-                <span className="text-rose-800 font-semibold">3500g (Moyenne)</span>
+                <span className="text-[#AA635C] font-semibold">3500g (Moyenne)</span>
                 <span>4800g</span>
               </div>
             </div>
@@ -450,11 +450,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setHeightCm(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
+                className="w-full accent-[#D68C85] cursor-pointer h-2 bg-[#F2D7D4] rounded-lg"
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>42 cm</span>
-                <span className="text-rose-800 font-semibold">50 cm (Moyenne)</span>
+                <span className="text-[#AA635C] font-semibold">50 cm (Moyenne)</span>
                 <span>58 cm</span>
               </div>
             </div>
