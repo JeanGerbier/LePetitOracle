@@ -67,7 +67,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
             >
               {/* Card Top Header */}
               <div className="flex justify-between items-start gap-3">
-                <div className="flex items-center gap-3 min-w-0 flex-1">
+                <div className="flex items-start gap-3 min-w-0 flex-1">
                   <div className="w-11 h-11 rounded-2xl bg-amber-100/90 border border-amber-300 flex items-center justify-center font-extrabold text-amber-900 text-lg shadow-xs shrink-0">
                     {capitalizeName(item.user_name).charAt(0).toUpperCase()}
                   </div>
