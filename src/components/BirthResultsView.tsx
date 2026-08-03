@@ -45,11 +45,11 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
   const formatWhoCries = (val: string) => {
     switch (val) {
       case 'maman':
-        return '🤱 La maman';
+        return 'La Maman';
       case 'papa':
-        return '🧔 Le papa';
+        return 'Le Papa';
       case 'les_deux':
-        return '😭 Les parents en même temps';
+        return 'Les deux';
       default:
         return val;
     }

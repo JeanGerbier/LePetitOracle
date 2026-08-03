@@ -199,9 +199,9 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
               onChange={(e) => setActualData({ ...actualData, who_cried_first: e.target.value as any })}
               className="w-full bg-stone-50 border border-stone-200 rounded-xl px-3.5 py-2.5 text-sm font-bold text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
-              <option value="maman">🤱 La Maman</option>
-              <option value="papa">🧔 Le Papa</option>
-              <option value="les_deux">😭 Les parents en même temps</option>
+              <option value="maman">La Maman</option>
+              <option value="papa">Le Papa</option>
+              <option value="les_deux">Les deux</option>
             </select>
           </div>
 
