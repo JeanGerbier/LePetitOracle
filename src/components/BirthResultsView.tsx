@@ -1,6 +1,6 @@
 import React from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
-import { calculateFinalScore } from '../utils/scoring';
+import { calculateFinalScore, capitalizeName } from '../utils/scoring';
 import { Award, Sparkles, RotateCcw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -174,10 +174,10 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
                   </span>
                 </div>
                 <h2 className="text-3xl font-serif font-black text-slate-900">
-                  {grandWinner.user_name}
+                  {capitalizeName(grandWinner.user_name)}
                 </h2>
                 <p className="text-xs text-slate-500 mt-1">
-                  A obtenu le meilleur score de la tribu avec <span className="font-bold text-teal-800">{grandWinner.totalScore} points</span> sur 230 !
+                  A obtenu le meilleur score de la tribu avec <span className="font-bold text-teal-800">{grandWinner.totalScore} points</span> sur 300 !
                 </p>
               </div>
             </div>

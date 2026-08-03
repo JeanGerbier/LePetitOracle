@@ -1,6 +1,15 @@
 import { Prediction, ActualBirthData, ScoreBreakdown, RankedPrediction } from '../types/prediction';
 
 /**
+ * Capitalise la première lettre du nom d'un participant
+ */
+export function capitalizeName(str: string): string {
+  if (!str) return '';
+  const trimmed = str.trim();
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
+
+/**
  * Calcul du score potentiel pour la barre latérale du formulaire
  */
 export function calculatePotentialScore(
@@ -21,11 +30,11 @@ export function calculatePotentialScore(
   const isHeightSet = heightCm > 0;
 
   const genderPts = isGenderSet ? 50 : 0;
-  const firstNamePts = isFirstNameSet ? 50 : 0;
+  const firstNamePts = isFirstNameSet ? 90 : 0;
   const dateTimePts = isDateTimeSet ? 50 : 0;
   const criesPts = isCriesSet ? 30 : 0;
-  const weightPts = isWeightSet ? 30 : 0;
-  const heightPts = isHeightSet ? 20 : 0;
+  const weightPts = isWeightSet ? 40 : 0;
+  const heightPts = isHeightSet ? 40 : 0;
 
   const totalPossible = genderPts + firstNamePts + dateTimePts + criesPts + weightPts + heightPts;
 
@@ -41,13 +50,13 @@ export function calculatePotentialScore(
 }
 
 /**
- * Calcul du score réel final selon le barème officiel du cahier des charges :
+ * Calcul du score réel final selon le barème officiel :
  * 1. Sexe exact : +50 pts
- * 2. Prénom exact : +50 pts (case-insensitive)
+ * 2. Prénom exact : +90 pts (case-insensitive)
  * 3. Date & Heure : Max 50 pts (-2 pts par heure d'écart)
  * 4. Qui pleure en premier : +30 pts
- * 5. Poids : Max 30 pts (-1 pt tous les 20g d'écart)
- * 6. Taille : Max 20 pts (-5 pts par cm d'écart)
+ * 5. Poids : Max 40 pts (-1 pt tous les 20g d'écart)
+ * 6. Taille : Max 40 pts (-4 pts par cm d'écart)
  */
 export function calculateFinalScore(
   pred: Prediction,
@@ -65,13 +74,13 @@ export function calculateFinalScore(
     genderScore = 50;
   }
 
-  // 2. Prénom exact (+50 pts, case-insensitive, trim)
+  // 2. Prénom exact (+90 pts, case-insensitive, trim)
   if (
     pred.first_name_guess &&
     actual.first_name &&
     pred.first_name_guess.trim().toLowerCase() === actual.first_name.trim().toLowerCase()
   ) {
-    firstNameScore = 50;
+    firstNameScore = 90;
   }
 
   // 3. Date & Heure (Max 50 pts, -2 pts / heure d'écart)
@@ -89,13 +98,13 @@ export function calculateFinalScore(
     criesScore = 30;
   }
 
-  // 5. Poids (Max 30 pts, -1 pt tous les 20g d'écart)
+  // 5. Poids (Max 40 pts, -1 pt tous les 20g d'écart)
   const weightDiffGrams = Math.abs(pred.weight_grams - actual.weight_grams);
-  weightScore = Math.max(0, Math.round(30 - weightDiffGrams / 20));
+  weightScore = Math.max(0, Math.round(40 - weightDiffGrams / 20));
 
-  // 6. Taille (Max 20 pts, -5 pts par cm d'écart)
+  // 6. Taille (Max 40 pts, -4 pts par cm d'écart)
   const heightDiffCm = Math.abs(pred.height_cm - actual.height_cm);
-  heightScore = Math.max(0, Math.round(20 - heightDiffCm * 5));
+  heightScore = Math.max(0, Math.round(40 - heightDiffCm * 4));
 
   const totalScore =
     genderScore +

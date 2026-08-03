@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Trophy } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface SuccessModalProps {
@@ -39,8 +38,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ userName, onClose })
           onClick={onClose}
           className="w-full bg-[#528F79] hover:bg-[#437A66] text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition-all flex items-center justify-center gap-2 text-sm cursor-pointer active:scale-98"
         >
-          <span>Voir le classement de la tribu</span>
-          <Trophy className="w-4 h-4" />
+          <span>C'est noté ! ✨</span>
         </button>
       </div>
     </div>

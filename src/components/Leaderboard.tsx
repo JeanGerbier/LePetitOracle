@@ -1,6 +1,7 @@
 import React from 'react';
 import { Prediction } from '../types/prediction';
-import { Users, Sparkles, Plus } from 'lucide-react';
+import { Users, Sparkles } from 'lucide-react';
+import { capitalizeName } from '../utils/scoring';
 
 interface LeaderboardProps {
   predictions: Prediction[];
@@ -9,7 +10,6 @@ interface LeaderboardProps {
 
 export const Leaderboard: React.FC<LeaderboardProps> = ({
   predictions,
-  onAddNew,
 }) => {
   const formatWhoCries = (val: string) => {
     switch (val) {
@@ -39,7 +39,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   return (
     <div className="animate-fade-in max-w-5xl mx-auto space-y-6">
       
-      {/* Top Title & Add Button */}
+      {/* Top Title */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white p-6 rounded-3xl border border-stone-200 shadow-xs">
         <div>
           <div className="flex items-center gap-2 text-teal-800 text-xs font-bold uppercase tracking-wider mb-1">
@@ -53,14 +53,6 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
             Découvrez ce que les proches ont parié pour l'arrivée de bébé !
           </p>
         </div>
-
-        <button
-          onClick={onAddNew}
-          className="bg-[#528F79] hover:bg-[#437A66] text-white font-bold px-6 py-3 rounded-2xl text-sm shadow-sm hover:shadow transition-all flex items-center gap-2 cursor-pointer active:scale-98"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Ajouter le mien</span>
-        </button>
       </div>
 
       {/* Grid of Predictions */}
@@ -71,12 +63,6 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
           <p className="text-sm text-slate-500 max-w-md mx-auto">
             Soyez la toute première personne de la famille à donner votre avis.
           </p>
-          <button
-            onClick={onAddNew}
-            className="bg-[#528F79] text-white font-bold px-6 py-3 rounded-xl text-sm shadow-xs inline-block"
-          >
-            Faire le premier pronostic
-          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -89,10 +75,10 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-2xl bg-amber-100/90 border border-amber-300 flex items-center justify-center font-extrabold text-amber-900 text-lg shadow-xs">
-                    {item.user_name.charAt(0).toUpperCase()}
+                    {capitalizeName(item.user_name).charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <h3 className="font-bold text-slate-800 text-base">{item.user_name}</h3>
+                    <h3 className="font-bold text-slate-800 text-base">{capitalizeName(item.user_name)}</h3>
                     <span className="text-[11px] text-slate-400 font-medium">
                       Enregistré récemment
                     </span>

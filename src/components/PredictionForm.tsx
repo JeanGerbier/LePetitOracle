@@ -74,15 +74,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
 
     setIsSubmitting(true);
     try {
-      // 1. Vérification si cet appareil ou ce prénom a déjà soumis
-      const alreadySubmittedDevice = localStorage.getItem('le_petit_oracle_submitted') === 'true';
-      if (alreadySubmittedDevice) {
-        const previousName = localStorage.getItem('le_petit_oracle_user_name') || 'cet appareil';
-        setDuplicateError(`Un pronostic a déjà été enregistré depuis votre appareil (au nom de "${previousName}").`);
-        setIsSubmitting(false);
-        return;
-      }
-
+      // 1. Vérification si ce prénom a déjà soumis dans Supabase
       const existsInDb = await checkIfPredictionExists(trimmedName);
       if (existsInDb) {
         setDuplicateError(`Un pronostic existe déjà au nom de "${trimmedName}". Merci de préciser votre prénom et nom !`);
@@ -473,7 +465,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Score Potentiel Estimé</span>
               <div className="flex items-baseline gap-2">
                 <span className="text-2xl font-black text-slate-900">+{scoreBreakdown.totalPossible} pts</span>
-                <span className="text-xs text-slate-400 font-medium">/ 230 pts max</span>
+                <span className="text-xs text-slate-400 font-medium">/ 300 pts max</span>
               </div>
             </div>
           </div>
