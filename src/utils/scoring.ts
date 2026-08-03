@@ -1,5 +1,22 @@
 import { Prediction, ActualBirthData, ScoreBreakdown, RankedPrediction } from '../types/prediction';
 
+const ORACLE_PREFIXES = [
+  'Oracle',
+  'Visionnaire',
+  'Astrologue',
+  'Médium',
+  'Devin',
+  'Sage',
+  'Astronome',
+  'Prophète',
+  'Guide',
+  'Augure',
+  'Interprète',
+  'Clairvoyant',
+  'Initié',
+  'Érudit',
+];
+
 /**
  * Capitalise la première lettre du nom d'un participant
  */
@@ -7,6 +24,29 @@ export function capitalizeName(str: string): string {
   if (!str) return '';
   const trimmed = str.trim();
   return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
+
+/**
+ * Calcule un préfixe fixe et déterministe basé sur le nom du participant
+ */
+export function getPrefixForName(str: string): string {
+  if (!str) return 'Oracle';
+  const trimmed = str.trim().toLowerCase();
+  let hash = 0;
+  for (let i = 0; i < trimmed.length; i++) {
+    hash = (hash * 31 + trimmed.charCodeAt(i)) & 0x7fffffff;
+  }
+  return ORACLE_PREFIXES[hash % ORACLE_PREFIXES.length];
+}
+
+/**
+ * Retourne le prénom avec son préfixe (ex: "Astrologue Mamie Chantal")
+ */
+export function formatOracleName(str: string): string {
+  if (!str) return '';
+  const prefix = getPrefixForName(str);
+  const formattedName = capitalizeName(str);
+  return `${prefix} ${formattedName}`;
 }
 
 /**

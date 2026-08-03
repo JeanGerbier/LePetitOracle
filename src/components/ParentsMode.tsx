@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
-import { calculateFinalScore } from '../utils/scoring';
+import { calculateFinalScore, formatOracleName } from '../utils/scoring';
 import { Crown, ChevronDown, ChevronUp, Save, LogOut, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -309,7 +309,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-slate-800 text-base">{rank.user_name}</h4>
+                        <h4 className="font-bold text-slate-800 text-base">{formatOracleName(rank.user_name)}</h4>
                         {isWinner && (
                           <span className="bg-amber-200 text-amber-950 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs uppercase tracking-wider flex items-center gap-1">
                             🏆 Le Grand Oracle de la Tribu
@@ -343,7 +343,7 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
                 {isExpanded && (
                   <div className="bg-white/90 border-t border-stone-200/80 p-4 space-y-3">
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 block">
-                      Détail du pari de {rank.user_name} :
+                      Détail du pari de {formatOracleName(rank.user_name)} :
                     </span>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
                       <div className="bg-stone-50 p-2.5 rounded-xl border border-stone-200/60 flex flex-col justify-between">

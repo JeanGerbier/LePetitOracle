@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { formatOracleName } from '../utils/scoring';
 
 interface SuccessModalProps {
   userName: string;
@@ -30,7 +31,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ userName, onClose })
             Pronostic Enregistré !
           </h3>
           <p className="text-sm text-slate-600 leading-relaxed">
-            Merci <span className="font-bold text-slate-900">{userName}</span> ! Vos choix sont précieusement enregistrés. Rendez-vous au jour J pour le calcul des points !
+            Merci <span className="font-bold text-slate-900">{formatOracleName(userName)}</span> ! Vos choix sont précieusement enregistrés. Rendez-vous au jour J pour le calcul des points !
           </p>
         </div>
 

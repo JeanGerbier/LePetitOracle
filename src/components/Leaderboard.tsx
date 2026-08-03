@@ -1,7 +1,7 @@
 import React from 'react';
 import { Prediction } from '../types/prediction';
 import { Sparkles } from 'lucide-react';
-import { capitalizeName } from '../utils/scoring';
+import { capitalizeName, formatOracleName } from '../utils/scoring';
 
 interface LeaderboardProps {
   predictions: Prediction[];
@@ -96,7 +96,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
                     {capitalizeName(item.user_name).charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{capitalizeName(item.user_name)}</h3>
+                    <h3 className="font-bold text-slate-800 text-base leading-tight break-words">{formatOracleName(item.user_name)}</h3>
                     <span className="text-[11px] text-slate-400 font-medium block mt-0.5">
                       {formatRelativeTime(item.created_at)}
                     </span>

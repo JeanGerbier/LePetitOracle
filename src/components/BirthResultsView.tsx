@@ -1,6 +1,6 @@
 import React from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
-import { calculateFinalScore, capitalizeName } from '../utils/scoring';
+import { calculateFinalScore, formatOracleName } from '../utils/scoring';
 import { Award, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -160,7 +160,7 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
                   </span>
                 </div>
                 <h2 className="text-3xl font-serif font-black text-slate-900">
-                  {capitalizeName(grandWinner.user_name)}
+                  {formatOracleName(grandWinner.user_name)}
                 </h2>
                 <p className="text-xs text-slate-500 mt-1">
                   A obtenu le meilleur score de la tribu avec <span className="font-bold text-teal-800">{grandWinner.totalScore} points</span> sur 300 !
@@ -210,7 +210,7 @@ export const BirthResultsView: React.FC<BirthResultsViewProps> = ({
 
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-bold text-slate-800 text-base">{item.user_name}</h4>
+                      <h4 className="font-bold text-slate-800 text-base">{formatOracleName(item.user_name)}</h4>
                       {isWinner && (
                         <span className="bg-amber-200 text-amber-950 text-[10px] font-extrabold px-2 py-0.5 rounded-full">
                           🏆 Gagnant
