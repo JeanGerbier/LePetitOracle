@@ -400,11 +400,14 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setWeightGrams(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
+                className="soft-slider"
+                style={{
+                  background: `linear-gradient(to right, #E2A9A3 0%, #E2A9A3 ${((weightGrams - 2200) / (4800 - 2200)) * 100}%, #F5DEDC ${((weightGrams - 2200) / (4800 - 2200)) * 100}%, #F5DEDC 100%)`
+                }}
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>2200g</span>
-                <span className="text-rose-800 font-semibold">3500g (Moyenne)</span>
+                <span className="text-[#B86B63] font-semibold">3500g (Moyenne)</span>
                 <span>4800g</span>
               </div>
             </div>
@@ -447,11 +450,14 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                   setHeightCm(Number(e.target.value));
                   setHasTouchedSlider(true);
                 }}
-                className="w-full accent-rose-500 cursor-pointer h-2 bg-rose-200/60 rounded-lg"
+                className="soft-slider"
+                style={{
+                  background: `linear-gradient(to right, #E2A9A3 0%, #E2A9A3 ${((heightCm - 42) / (58 - 42)) * 100}%, #F5DEDC ${((heightCm - 42) / (58 - 42)) * 100}%, #F5DEDC 100%)`
+                }}
               />
               <div className="flex justify-between text-[11px] font-medium text-stone-400">
                 <span>42 cm</span>
-                <span className="text-rose-800 font-semibold">50 cm (Moyenne)</span>
+                <span className="text-[#B86B63] font-semibold">50 cm (Moyenne)</span>
                 <span>58 cm</span>
               </div>
             </div>

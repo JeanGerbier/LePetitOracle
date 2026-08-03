@@ -45,3 +45,51 @@
 .animate-fade-in {
   animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Custom Soft Pastel Sliders (Linear Gradient Fill) */
+.soft-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+}
+
+.soft-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+}
+
+.soft-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #E2A9A3;
+  box-shadow: 0 2px 5px rgba(226, 169, 163, 0.4);
+  border: 2px solid #FFFFFF;
+  margin-top: -6px;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.soft-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #D49891;
+}
+
+.soft-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+}
+
+.soft-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #E2A9A3;
+  box-shadow: 0 2px 5px rgba(226, 169, 163, 0.4);
+  border: 2px solid #FFFFFF;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Prediction, ActualBirthData } from '../types/prediction';
 import { calculateFinalScore } from '../utils/scoring';
-import { Crown, Trophy, ChevronDown, ChevronUp, Save, LogOut, Check } from 'lucide-react';
+import { Crown, ChevronDown, ChevronUp, Save, LogOut, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface ParentsModeProps {
@@ -163,8 +163,8 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
       {/* Section 1: Inputs grid */}
       <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
         <div className="flex justify-between items-center border-b border-stone-100 pb-4">
-          <h2 className="font-bold text-slate-800 text-lg sm:text-xl flex items-center gap-2">
-            <span>📝</span> 1. Saisie des informations réelles de la naissance
+          <h2 className="font-bold text-slate-800 text-lg sm:text-xl">
+            Saisie des informations réelles de la naissance
           </h2>
           <span className="text-xs text-slate-400 font-medium">Saisie Officielle Parents</span>
         </div>
@@ -274,9 +274,8 @@ export const ParentsMode: React.FC<ParentsModeProps> = ({
       {/* Section 2: Calculated Podium Results */}
       <div className="bg-white border border-stone-200 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-100 pb-4">
-          <h2 className="font-bold text-slate-800 text-lg sm:text-xl flex items-center gap-2">
-            <Trophy className="w-6 h-6 text-amber-500" />
-            <span>2. Classement & Grand Gagnant Calculé</span>
+          <h2 className="font-bold text-slate-800 text-lg sm:text-xl">
+            Classement & Grand Gagnant Calculé
           </h2>
           <span className="text-xs text-teal-800 font-semibold bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
             ⚡ Recalculé automatiquement
