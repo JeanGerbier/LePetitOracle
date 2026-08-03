@@ -343,7 +343,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                 {[
                   { id: 'maman', label: 'La Maman', icon: '/assets/maman.png' },
                   { id: 'papa', label: 'Le Papa', icon: '/assets/papa.png' },
-                  { id: 'les_deux', label: 'Les parents en même temps', icon: '/assets/bebe.png' }
+                  { id: 'les_deux', label: 'Les parents en même temps', icon: '/assets/papa-maman.png' }
                 ].map((option) => (
                   <button
                     key={option.id}
