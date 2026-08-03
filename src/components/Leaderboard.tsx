@@ -73,6 +73,42 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
         </p>
       </div>
 
+      {/* Collective Prophecy Gauge */}
+      {predictions.length > 0 && (() => {
+        const girlCount = predictions.filter(p => p.gender === 'fille').length;
+        const boyCount = predictions.filter(p => p.gender === 'garcon').length;
+        const total = predictions.length;
+        const girlPct = Math.round((girlCount / total) * 100);
+        const boyPct = 100 - girlPct;
+
+        return (
+          <div className="bg-white border border-stone-200 rounded-3xl p-4 sm:p-5 shadow-xs space-y-2.5">
+            <div className="flex justify-between items-center text-xs">
+              <span className="font-bold text-slate-800 text-sm">La prophétie collective</span>
+              <span className="text-slate-400 font-medium">
+                {girlCount} Fille{girlCount > 1 ? 's' : ''} · {boyCount} Garçon{boyCount > 1 ? 's' : ''}
+              </span>
+            </div>
+
+            <div className="w-full h-3 bg-stone-100 rounded-full overflow-hidden flex shadow-inner">
+              <div
+                style={{ width: `${girlPct}%` }}
+                className="bg-[#E2A9A3] transition-all duration-500"
+              />
+              <div
+                style={{ width: `${boyPct}%` }}
+                className="bg-[#79ADA5] transition-all duration-500"
+              />
+            </div>
+
+            <div className="flex justify-between items-center text-xs font-bold">
+              <span className="text-[#B86B63] flex items-center gap-1">🌸 {girlPct}% Fille</span>
+              <span className="text-[#3A7268] flex items-center gap-1">{boyPct}% Garçon 🚀</span>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Grid of Predictions */}
       {predictions.length === 0 ? (
         <div className="bg-white border border-stone-200 rounded-3xl p-12 text-center space-y-4">
