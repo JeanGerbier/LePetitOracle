@@ -134,36 +134,16 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div className="animate-fade-in space-y-6">
+    <div className="animate-fade-in max-w-6xl mx-auto space-y-6">
       
       {/* Title Header Bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
-            Le Formulaire des Pronostics
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            Remplissez vos intuitions et découvrez votre score potentiel !
-          </p>
-        </div>
-
-        {/* User Identity Box */}
-        <div className="flex flex-col gap-1 bg-white px-4 py-2.5 rounded-2xl border border-stone-200 shadow-xs w-full sm:w-auto">
-          <label className="text-[10px] font-extrabold uppercase tracking-wider text-teal-800">
-            Votre Prénom & Nom <span className="text-rose-500">*</span>
-          </label>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-              setDuplicateError('');
-            }}
-            className="text-sm font-bold text-slate-800 bg-transparent border-none focus:outline-none focus:ring-0 w-full sm:w-48 placeholder:text-slate-400 placeholder:font-normal"
-            placeholder="ex: Mamie Chantal"
-            required
-          />
-        </div>
+      <div>
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold text-slate-800">
+          Le Formulaire des Pronostics
+        </h1>
+        <p className="text-sm text-slate-500 mt-1">
+          Remplissez vos intuitions et découvrez votre score potentiel !
+        </p>
       </div>
 
       {/* Duplicate Error Banner */}
@@ -178,7 +158,39 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
       <StepProgress percent={progressPercent} />
 
       {/* Main Grid Layout - Proposition A (Pleine Largeur 12 colonnes) */}
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-6xl mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-6">
+
+        {/* --- CARD 0: Votre Profil (12 cols) --- */}
+        <div className="bg-[#FAF2E8]/90 border border-[#EEDCC8] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
+          <div className="sm:w-36 bg-[#F3D7B7] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#5A3E2B] shrink-0">
+            <div className="w-12 h-12 rounded-full bg-white/60 border border-white/80 flex items-center justify-center text-2xl shadow-xs">
+              👋
+            </div>
+            <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#5A3E2B]/90 mt-1">
+              Votre Profil
+            </span>
+          </div>
+
+          <div className="flex-1 p-4 sm:p-5 flex flex-col justify-center space-y-1.5">
+            <label className="font-bold text-slate-800 text-base block">
+              Votre Prénom & Nom <span className="text-rose-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={userName}
+              onChange={(e) => {
+                setUserName(e.target.value);
+                setDuplicateError('');
+              }}
+              className="w-full bg-white/90 border border-[#E5CCA8] rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 shadow-xs placeholder:font-normal placeholder:text-slate-400"
+              placeholder="ex: Mamie Chantal"
+              required
+            />
+            <p className="text-[11px] text-amber-900/70 italic font-medium">
+              Permet d'enregistrer votre pronostic à votre nom sur le classement de la tribu !
+            </p>
+          </div>
+        </div>
         
         {/* --- ROW 1: Date/Heure (6 cols) | Le Sexe (3 cols) | Le Prénom (3 cols) --- */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
