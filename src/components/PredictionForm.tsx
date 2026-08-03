@@ -192,7 +192,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           <div className="md:col-span-6 bg-[#D7E7EE]/80 border border-[#B0CAD6] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             {/* Encart coloré gauche - Largeur fixe identique sm:w-36 */}
             <div className="sm:w-36 bg-[#A7CAD8] p-4 sm:p-5 flex flex-col items-center justify-center text-center text-[#1C3A47] shrink-0">
-              <img src="/assets/date.png" alt="L'Arrivée" className="w-12 h-12 object-contain drop-shadow-xs" />
+              <img src="/assets/date.png" alt="L'Arrivée" className="w-14 h-14 object-contain drop-shadow-xs" />
             </div>
 
             {/* Formulaire droite */}
@@ -271,26 +271,26 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
               <button
                 type="button"
                 onClick={() => setGender('fille')}
-                className={`aspect-square p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
+                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                   gender === 'fille'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/fille.png" alt="Fille" className="w-8 h-8 object-contain" />
+                <img src="/assets/fille.png" alt="Fille" className="w-12 h-12 object-contain" />
                 <span className="text-xs font-bold">Fille</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setGender('garcon')}
-                className={`aspect-square p-2.5 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
+                className={`aspect-square p-2 rounded-2xl border transition-all duration-200 flex flex-col items-center justify-center gap-1.5 cursor-pointer ${
                   gender === 'garcon'
                     ? 'bg-[#F5E8D2] border-amber-400 ring-2 ring-amber-300 shadow-sm text-slate-900 font-bold transform -translate-y-0.5'
                     : 'bg-white/80 border-[#E5DACE] hover:bg-white text-slate-600'
                 }`}
               >
-                <img src="/assets/garcon.png" alt="Garçon" className="w-8 h-8 object-contain" />
+                <img src="/assets/garcon.png" alt="Garçon" className="w-12 h-12 object-contain" />
                 <span className="text-xs font-bold">Garçon</span>
               </button>
             </div>
@@ -347,7 +347,11 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
                       : 'bg-white/80 border-stone-200 hover:bg-white text-slate-700'
                   }`}
                 >
-                  <img src={option.icon} alt={option.label} className="w-10 h-10 object-contain drop-shadow-2xs" />
+                  <img 
+                    src={option.icon} 
+                    alt={option.label} 
+                    className={`${option.id === 'les_deux' ? 'w-14 h-14' : 'w-12 h-12'} object-contain drop-shadow-2xs`} 
+                  />
                   <span className="text-xs font-bold text-slate-800">
                     {option.label}
                   </span>
@@ -363,7 +367,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           {/* Card 5: Poids (g) (6 cols) */}
           <div className="md:col-span-6 bg-[#FAF0EF] border border-[#F2D7D4] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             <div className="sm:w-36 bg-[#E2A9A3] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
-              <img src="/assets/poids.png" alt="Poids" className="w-12 h-12 object-contain drop-shadow-xs" />
+              <img src="/assets/poids.png" alt="Poids" className="w-14 h-14 object-contain drop-shadow-xs" />
             </div>
 
             <div className="flex-1 p-5 space-y-3">
@@ -410,7 +414,7 @@ export const PredictionForm: React.FC<PredictionFormProps> = ({ onSubmit }) => {
           {/* Card 6: Taille (cm) (6 cols) */}
           <div className="md:col-span-6 bg-[#FAF0EF] border border-[#F2D7D4] rounded-3xl shadow-xs overflow-hidden flex flex-col sm:flex-row hover:shadow-sm transition">
             <div className="sm:w-36 bg-[#E2A9A3] p-5 flex flex-col items-center justify-center text-center text-white shrink-0">
-              <img src="/assets/taille.png" alt="Taille" className="w-12 h-12 object-contain drop-shadow-xs" />
+              <img src="/assets/taille.png" alt="Taille" className="w-14 h-14 object-contain drop-shadow-xs" />
             </div>
 
             <div className="flex-1 p-5 space-y-3">
